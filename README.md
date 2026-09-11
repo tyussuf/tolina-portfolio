@@ -1,16 +1,39 @@
-# React + Vite
+# Tolina Yussuf — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio and case study site for Tolina Yussuf, a UX/UI designer studying
+Interactive Design & Information Systems at Kennesaw State University.
 
-Currently, two official plugins are available:
+The site frames case studies as a crate of vinyl records — browse the collection, flip
+open a record for a quick summary, or dig into the full case study.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- [React 19](https://react.dev) + [Vite](https://vite.dev)
+- [Tailwind CSS 4](https://tailwindcss.com) (via the Vite plugin, no `tailwind.config.js`)
+- [React Router](https://reactrouter.com)
+- [Framer Motion](https://motion.dev) for scroll and transition animation
+- [Oxlint](https://oxc.rs) for linting
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the Oxlint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Other commands:
+
+```bash
+npm run build    # production build, outputs to dist/
+npm run preview  # serve the production build locally
+npm run lint     # run Oxlint
+```
+
+## Case studies
+
+- **Afaan Arcade** — a gamified mobile learning platform helping diasporic Oromo youth
+  practice Afaan Oromo and Qubee
+- **Odyssey** — a mobile travel companion app unifying itinerary, booking, and
+  navigation into one experience
+- **BluePrint** — a fashion education platform for building personal style through
+  guided lessons and moodboards
