@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* Strict 8pt spacing grid (see CLAUDE.md > Spacing). Resetting --spacing
+   to nothing removes Tailwind's default algebraic scale (p-N normally
+   resolves to N * 0.25rem for ANY N) — only the named steps redefined
+   below still work. An off-grid class like p-5 or gap-10 now silently
+   generates no utility at all, and an arbitrary value like p-[27px] is
+   the only way left to go off-grid — which is the point: it's visible
+   in review instead of blending in. */
+@theme {
+  --spacing-*: initial;
+  --spacing-0: 0px;
+  --spacing-px: 1px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-24: 96px;
+  --spacing-32: 128px;
+
+  --radius-*: initial;
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-md: 12px;
+  --radius-lg: 28px;
+  --radius-full: 9999px;
+}
