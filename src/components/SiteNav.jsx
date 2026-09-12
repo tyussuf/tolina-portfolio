@@ -22,7 +22,7 @@ export default function SiteNav() {
     <nav className="site-nav">
       <Link to="/" className="site-nav__logo" onClick={() => setOpen(false)}>
         <img src={cdStarLogo} alt="" className="site-nav__logo-badge" aria-hidden="true" />
-        tolina.designs
+        Tolina Yussuf
       </Link>
 
       <ul className={`site-nav__links${open ? ' site-nav__links--open' : ''}`} id="site-nav-links">
