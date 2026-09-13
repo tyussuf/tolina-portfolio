@@ -95,16 +95,44 @@ body.has-note-cursor button {
 
 .page {
   position: relative;
+  /* Establishes .page's own stacking context so .page__backdrop's
+     z-index:-1 resolves against IT, not some ancestor further up — without
+     this, .page (a plain non-stacking-context box) paints its own
+     background-color as a later, more-front step than a negative-z-index
+     descendant whose stacking context got hoisted past it, hiding the
+     backdrop behind flat --paper. */
+  z-index: 0;
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
   overflow-x: hidden;
   background-color: var(--paper);
-  background-image: radial-gradient(var(--dot) 1px, transparent 1px), var(--bg-image);
-  background-position: 0 0, center top;
-  background-size: 24px 24px, auto 100vh;
-  background-repeat: repeat, repeat-x;
-  background-attachment: scroll, fixed;
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-position: 0 0;
+  background-size: 24px 24px;
+  background-repeat: repeat;
+}
+
+/* A real position:fixed layer instead of background-attachment:fixed —
+   mobile Safari (and some Android WebViews) unreliably honors "fixed"
+   background-attachment on a non-body element, so the shimmer image would
+   only cover the first screen's height and fall back to flat --paper for
+   the rest of a tall page. position:fixed on an actual element doesn't
+   have that problem: it's always sized to and pinned to the viewport.
+   z-index:0 (not a negative value) is deliberate — position:fixed layers
+   with a negative z-index are prone to a Chromium compositing bug where
+   they silently fail to repaint after scrolling. Staying at 0 still keeps
+   it behind .hero/.teaser/etc (all z-index:1) and it's the first child in
+   the DOM, so it still paints behind .page's own content. */
+.page__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--bg-image);
+  background-position: center top;
+  background-size: auto 100%;
+  background-repeat: repeat-x;
+  pointer-events: none;
 }
 
 .page__content {
@@ -460,8 +488,10 @@ body.has-note-cursor button {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   height: min(50vw, 260px);
   margin: 0 auto 24px;
+  overflow: hidden;
   mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
 }

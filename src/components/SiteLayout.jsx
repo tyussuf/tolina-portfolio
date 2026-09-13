@@ -22,6 +22,7 @@ export default function SiteLayout() {
 
   return (
     <div className="page" style={{ '--bg-image': `url(${shimmerBg})` }}>
+      <div className="page__backdrop" aria-hidden="true" />
       <MusicCursor />
       <PosterWall />
       <BackgroundDecor />
