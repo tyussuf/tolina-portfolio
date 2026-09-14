@@ -9,7 +9,7 @@ import binderClipRed from '../assets/about/clips/binder-clip-red.png'
 // sits behind the front folder's z-index, the bottom portion (jaws) sits in
 // front of it, so it reads as physically gripping rather than floating on top.
 const CLIPS = [
-  { src: paperclipSilver, top: -6, left: '11%', width: 44, rotate: -12, splitAt: 40 },
+  { src: paperclipSilver, top: 20, left: '24%', width: 44, rotate: -12, splitAt: 40 },
   { src: binderClipRed, top: 22, left: '76%', width: 68, rotate: 9, splitAt: 42 },
 ]
 

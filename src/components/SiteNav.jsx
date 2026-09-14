@@ -46,6 +46,16 @@ export default function SiteNav() {
             Resume
           </a>
         </li>
+        {/* Same destination as .site-nav__cta below — that pill is hidden
+            below 720px (see App.css) since it's what crammed the compact
+            bar into two wrapped lines; this copy takes its place inside
+            the dropdown instead, so "Let's chat" stays reachable on
+            mobile without fighting the hamburger + logo for room. */}
+        <li className="site-nav__cta-mobile">
+          <a href={LINKS.calendly} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+            Let&rsquo;s chat ↗
+          </a>
+        </li>
       </ul>
 
       <button
