@@ -180,7 +180,9 @@ body.has-note-cursor button {
   width: 24px;
   height: auto;
   image-rendering: pixelated;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(1px 0 0 var(--ink)) drop-shadow(-1px 0 0 var(--ink))
+    drop-shadow(0 1px 0 var(--ink)) drop-shadow(0 -1px 0 var(--ink))
+    drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
 }
 
 .music-cursor--trail {
