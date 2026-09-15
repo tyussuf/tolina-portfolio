@@ -175,8 +175,12 @@ body.has-note-cursor button {
 }
 
 .music-cursor--lead {
-  color: #fff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
 }
 
 .music-cursor--trail {
@@ -190,10 +194,9 @@ body.has-note-cursor button {
 .music-cursor__sparkle {
   position: fixed;
   z-index: 1999;
-  color: var(--star-pink);
   font-size: 12px;
   pointer-events: none;
-  text-shadow: 0 0 6px rgba(224, 96, 143, 0.7);
+  text-shadow: 0 0 6px currentColor;
 }
 
 /* ---------- Nav ---------- */
@@ -446,12 +449,6 @@ body.has-note-cursor button {
   color: var(--ink);
   background: var(--muted-yellow);
   box-shadow: 3px 3px 0 var(--ink);
-  transition: transform 0.2s, rotate 0.2s;
-}
-
-.skills__pill:hover {
-  rotate: 0deg;
-  transform: translateY(-2px);
 }
 
 .skills__pill:nth-child(5n + 2) {

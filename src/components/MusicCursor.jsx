@@ -1,8 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
+import pixelArrow from '../assets/cursor/pixel-arrow.png'
 
 const NOTES = ['♪', '♫', '♬']
 const SPARKLES = ['✦', '✧', '·']
+const GLITTER_COLORS = [
+  'var(--star-pink)',
+  'var(--honey-quartz)',
+  'var(--chart-teal)',
+  'var(--star-plum)',
+  'var(--terracotta)',
+]
 let particleId = 0
 
 export default function MusicCursor() {
@@ -35,12 +43,18 @@ export default function MusicCursor() {
       if (now - lastSpawn.current > 70) {
         lastSpawn.current = now
         const id = particleId++
-        const glyph = SPARKLES[id % SPARKLES.length]
+        // Every third particle is a music note; the rest are glitter sparkles.
+        const isNote = id % 3 === 0
+        const glyph = isNote
+          ? NOTES[(id / 3) % NOTES.length]
+          : SPARKLES[id % SPARKLES.length]
+        const color = isNote ? 'var(--ink)' : GLITTER_COLORS[id % GLITTER_COLORS.length]
         setParticles((prev) => [
           ...prev.slice(-14),
           {
             id,
             glyph,
+            color,
             x: event.clientX + (Math.random() * 16 - 8),
             y: event.clientY + (Math.random() * 16 - 8),
           },
@@ -66,7 +80,7 @@ export default function MusicCursor() {
         <motion.span
           key={particle.id}
           className="music-cursor__sparkle"
-          style={{ left: particle.x, top: particle.y }}
+          style={{ left: particle.x, top: particle.y, color: particle.color }}
           initial={{ opacity: 1, scale: 1, y: 0 }}
           animate={{ opacity: 0, scale: 0.3, y: 22 }}
           transition={{ duration: 0.65, ease: 'easeOut' }}
@@ -76,13 +90,13 @@ export default function MusicCursor() {
         </motion.span>
       ))}
 
-      <motion.span
+      <motion.img
+        src={pixelArrow}
+        alt=""
         className="music-cursor music-cursor--lead"
         style={{ x: springX, y: springY, rotate }}
         aria-hidden="true"
-      >
-        {NOTES[0]}
-      </motion.span>
+      />
       <motion.span
         className="music-cursor music-cursor--trail"
         style={{ x: springX, y: springY }}
