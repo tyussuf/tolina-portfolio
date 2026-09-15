@@ -484,16 +484,23 @@ body.has-note-cursor button {
 }
 
 .teaser__intro {
-  margin-bottom: 8px;
+  margin-bottom: 24px;
+  padding: clamp(20px, 4vh, 32px) clamp(24px, 6vw, 40px);
+  border-radius: 22px;
+  background: rgba(247, 242, 231, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 24px 60px rgba(37, 26, 53, 0.22);
 }
 
 .teaser__eyebrow {
   margin: 0 0 8px;
   font-family: var(--font-body);
+  font-weight: 700;
   font-size: 16px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--paper);
+  color: var(--terracotta);
 }
 
 .teaser__heading {
@@ -502,10 +509,7 @@ body.has-note-cursor button {
   font-weight: 700;
   font-style: italic;
   font-size: clamp(28px, 5vw, 44px);
-  /* Same reasoning as .teaser__lede just below: this section sits directly
-     on the page's shimmer background image, not flat cream, so it needs a
-     light color to stay legible. */
-  color: #fff;
+  color: var(--ink);
 }
 
 .teaser__stack {

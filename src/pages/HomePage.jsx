@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import SectionMarquee from '../components/SectionMarquee.jsx'
 import IntroSpin from '../components/IntroSpin.jsx'
 import { records } from '../data/records.js'
 
@@ -51,8 +50,6 @@ export default function HomePage() {
           </ul>
         </div>
       </header>
-
-      <SectionMarquee />
 
       <section className="teaser">
         <div className="teaser__intro">
