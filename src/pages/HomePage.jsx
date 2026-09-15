@@ -48,15 +48,15 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
+
+          <div className="teaser__intro">
+            <p className="teaser__eyebrow">These are my case studies</p>
+            <h2 className="teaser__heading">Drop the needle.</h2>
+          </div>
         </div>
       </header>
 
       <section className="teaser">
-        <div className="teaser__intro">
-          <p className="teaser__eyebrow">These are my case studies</p>
-          <h2 className="teaser__heading">Drop the needle.</h2>
-        </div>
-
         <div className="teaser__stack">
           <Link
             to={`/work/${tertiary.id}`}

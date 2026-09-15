@@ -142,6 +142,7 @@ body.has-note-cursor button {
   background-position: center top;
   background-size: auto 100%;
   background-repeat: repeat-x;
+  opacity: 0.95;
   pointer-events: none;
 }
 
@@ -486,13 +487,9 @@ body.has-note-cursor button {
 }
 
 .teaser__intro {
-  margin-bottom: 24px;
-  padding: clamp(20px, 4vh, 32px) clamp(24px, 6vw, 40px);
-  border-radius: 22px;
-  background: rgba(247, 242, 231, 0.86);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 24px 60px rgba(37, 26, 53, 0.22);
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
 }
 
 .teaser__eyebrow {
