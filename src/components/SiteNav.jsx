@@ -3,6 +3,23 @@ import { Link } from 'react-router-dom'
 import cdStarLogo from '../assets/logo/cd-star.jpg'
 import { LINKS } from '../data/links.js'
 
+function ArrowUpRight() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.4"
+      aria-hidden="true"
+    >
+      <path d="M7 17L17 7" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 export default function SiteNav() {
   const [open, setOpen] = useState(false)
 
@@ -53,7 +70,7 @@ export default function SiteNav() {
             mobile without fighting the hamburger + logo for room. */}
         <li className="site-nav__cta-mobile">
           <a href={LINKS.calendly} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-            Let&rsquo;s chat ↗
+            Let&rsquo;s chat <ArrowUpRight />
           </a>
         </li>
       </ul>
@@ -78,7 +95,7 @@ export default function SiteNav() {
         className="site-nav__cta"
         aria-label="Schedule a coffee chat with me on Calendly"
       >
-        Let&rsquo;s chat ↗
+        Let&rsquo;s chat <ArrowUpRight />
       </a>
     </nav>
   )

@@ -39,7 +39,7 @@ export default function AboutDesigner() {
           </div>
         </div>
 
-        <div className="w-full min-[900px]:w-[40%] flex min-[900px]:justify-end">
+        <div className="w-full min-[900px]:w-[40%] flex justify-center min-[900px]:justify-end">
           <img
             src={designerPortrait}
             alt="Tolina Yussuf, portrait"

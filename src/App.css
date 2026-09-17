@@ -282,6 +282,9 @@ body.has-note-cursor button {
 }
 
 .site-nav__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   flex: none;
   padding: 8px 16px;
   border: 2px solid #fff;
@@ -701,7 +704,7 @@ body.has-note-cursor button {
 
 @media (max-width: 768px) {
   .shelf {
-    margin: clamp(16px, 3vh, 32px) clamp(16px, 4vw, 32px) 0;
+    margin: clamp(16px, 3vh, 32px) clamp(16px, 4vw, 32px) clamp(48px, 8vh, 96px);
   }
 }
 
@@ -1298,12 +1301,13 @@ body.has-note-cursor button {
 
 @media (max-width: 720px) {
   .detail-panel {
-    top: auto;
+    top: 6vh;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
-    max-height: 58vh;
+    max-height: none;
+    padding: 40px 24px;
     border-radius: 20px 20px 0 0;
   }
 }

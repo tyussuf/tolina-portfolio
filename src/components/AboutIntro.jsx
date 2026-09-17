@@ -167,7 +167,7 @@ export default function AboutIntro({ onSelectTab }) {
           </div>
         </div>
 
-        <div>
+        <div className="max-[899px]:overflow-hidden max-[899px]:rounded-2xl">
           <AboutCollage aspect="568 / 537" items={COLLAGE_ITEMS} />
         </div>
       </div>
