@@ -332,7 +332,7 @@ body.has-note-cursor button {
   display: none;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 880px) {
   .site-nav {
     position: relative;
     flex-wrap: nowrap;

@@ -47,7 +47,7 @@ export default function SiteNav() {
           </a>
         </li>
         {/* Same destination as .site-nav__cta below — that pill is hidden
-            below 720px (see App.css) since it's what crammed the compact
+            below 880px (see App.css) since it's what crammed the compact
             bar into two wrapped lines; this copy takes its place inside
             the dropdown instead, so "Let's chat" stays reachable on
             mobile without fighting the hamburger + logo for room. */}
