@@ -379,6 +379,10 @@ body.has-note-cursor button {
   }
 
   .site-nav__links--open a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
     width: 100%;
     text-align: center;
     padding: 12px 16px;
