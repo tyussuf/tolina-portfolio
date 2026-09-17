@@ -53,9 +53,6 @@ export default function HomePage() {
             <p className="teaser__eyebrow">These are my case studies</p>
             <h2 className="teaser__heading">Drop the needle.</h2>
             <p className="teaser__lede">A few records deep in the crate.</p>
-            <Link to="/work" className="teaser__cta">
-              Browse the Collection <span aria-hidden="true">→</span>
-            </Link>
 
             <div className="teaser__stack">
               <Link
@@ -80,6 +77,10 @@ export default function HomePage() {
                 <img src={secondary.cover} alt={`${secondary.title} cover art`} draggable={false} />
               </Link>
             </div>
+
+            <Link to="/work" className="teaser__cta">
+              Browse the Collection <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </header>

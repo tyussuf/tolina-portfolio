@@ -518,8 +518,8 @@ body.has-note-cursor button {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: clamp(100px, 26vw, 200px);
-  margin: 24px auto 0;
+  height: clamp(110px, 30vw, 230px);
+  margin: 32px auto;
 }
 
 .teaser__cover {
