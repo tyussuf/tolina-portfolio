@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import IntroSpin from '../components/IntroSpin.jsx'
+import HeroSubtitle from '../components/HeroSubtitle.jsx'
 import { records } from '../data/records.js'
 
 const SKILLS = [
@@ -33,9 +34,7 @@ export default function HomePage() {
         <div className="hero__card">
           <p className="hero__eyebrow">Studying IAD &amp; IS @ KSU</p>
           <h1 className="hero__title">Hi, I&rsquo;m Tolina Yussuf!</h1>
-          <p className="hero__subtitle">
-            A UX/UI Designer who thinks in systems: how people, tech, and access intersect.
-          </p>
+          <HeroSubtitle />
 
           <ul className="skills">
             {SKILLS.map((skill, index) => (
