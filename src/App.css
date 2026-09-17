@@ -518,7 +518,7 @@ body.has-note-cursor button {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: min(50vw, 260px);
+  height: min(64vw, 380px);
   margin: 0 auto 24px;
   overflow: hidden;
   mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
@@ -573,11 +573,9 @@ body.has-note-cursor button {
 }
 
 .teaser__lede {
-  margin: 0;
+  margin: 16px 0 0;
   font-size: clamp(17px, 2vw, 19px);
-  /* This section sits directly on the page's shimmer background image, not
-     the cream card color, so it needs a light color to stay legible. */
-  color: #fff;
+  color: var(--ink-muted);
   font-style: italic;
 }
 
@@ -585,7 +583,7 @@ body.has-note-cursor button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 16px;
   padding: 16px 32px;
   min-height: 44px;
   border: none;
