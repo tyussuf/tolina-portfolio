@@ -340,6 +340,7 @@ body.has-note-cursor button {
 
   .site-nav__toggle {
     display: inline-flex;
+    margin-left: auto;
   }
 
   /* The compact bar only has room for the logo + hamburger without
