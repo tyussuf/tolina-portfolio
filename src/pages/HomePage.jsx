@@ -56,35 +56,33 @@ export default function HomePage() {
             <Link to="/work" className="teaser__cta">
               Browse the Collection <span aria-hidden="true">→</span>
             </Link>
+
+            <div className="teaser__stack">
+              <Link
+                to={`/work/${tertiary.id}`}
+                className="teaser__cover teaser__cover--side"
+                aria-label={`View ${tertiary.title} case study`}
+              >
+                <img src={tertiary.cover} alt={`${tertiary.title} cover art`} draggable={false} />
+              </Link>
+              <Link
+                to={`/work/${featured.id}`}
+                className="teaser__cover teaser__cover--front"
+                aria-label={`View ${featured.title} case study`}
+              >
+                <img src={featured.cover} alt={`${featured.title} cover art`} draggable={false} />
+              </Link>
+              <Link
+                to={`/work/${secondary.id}`}
+                className="teaser__cover teaser__cover--side"
+                aria-label={`View ${secondary.title} case study`}
+              >
+                <img src={secondary.cover} alt={`${secondary.title} cover art`} draggable={false} />
+              </Link>
+            </div>
           </div>
         </div>
       </header>
-
-      <section className="teaser">
-        <div className="teaser__stack">
-          <Link
-            to={`/work/${tertiary.id}`}
-            className="teaser__cover teaser__cover--side"
-            aria-label={`View ${tertiary.title} case study`}
-          >
-            <img src={tertiary.cover} alt={`${tertiary.title} cover art`} draggable={false} />
-          </Link>
-          <Link
-            to={`/work/${featured.id}`}
-            className="teaser__cover teaser__cover--front"
-            aria-label={`View ${featured.title} case study`}
-          >
-            <img src={featured.cover} alt={`${featured.title} cover art`} draggable={false} />
-          </Link>
-          <Link
-            to={`/work/${secondary.id}`}
-            className="teaser__cover teaser__cover--side"
-            aria-label={`View ${secondary.title} case study`}
-          >
-            <img src={secondary.cover} alt={`${secondary.title} cover art`} draggable={false} />
-          </Link>
-        </div>
-      </section>
     </>
   )
 }
