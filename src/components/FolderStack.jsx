@@ -6,6 +6,27 @@ import AboutOffTheClock from './AboutOffTheClock.jsx'
 import AboutPlaying from './AboutPlaying.jsx'
 import FolderClips from './FolderClips.jsx'
 
+// Below this the fanned/staggered tab stack (each of the 3 back tabs
+// peeking out above the one in front) gets too cramped to read as the
+// "physical folders" metaphor it's going for — four tabs' worth of peeking
+// edges plus the front card ate a lot of vertical space before any real
+// content showed. A flat, always-fully-visible tab row reads better than
+// forcing the desktop metaphor into a phone-sized space.
+const MOBILE_QUERY = '(max-width: 640px)'
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(MOBILE_QUERY).matches,
+  )
+  useEffect(() => {
+    const mql = window.matchMedia(MOBILE_QUERY)
+    const handle = (event) => setIsMobile(event.matches)
+    mql.addEventListener('change', handle)
+    return () => mql.removeEventListener('change', handle)
+  }, [])
+  return isMobile
+}
+
 // Front-to-back order on load. Tab horizontal slot is fixed per folder
 // (index = slot), independent of which folder is currently active/front.
 // Colors are existing site tokens only, ordered for descending value so
@@ -36,6 +57,7 @@ export default function FolderStack() {
   const activeBodyRef = useRef(null)
   const stackRef = useRef(null)
   const mountedRef = useRef(false)
+  const isMobile = useIsMobile()
   const reduceMotion =
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -69,6 +91,49 @@ export default function FolderStack() {
     observer.observe(el)
     return () => observer.disconnect()
   }, [activeId])
+
+  // A phone-width screen doesn't have room for 3 tabs' worth of peeking
+  // edges above the active card — swap the staggered/fanned stack for a
+  // flat, always-fully-visible row of tab buttons above a single body.
+  if (isMobile) {
+    return (
+      <div ref={stackRef} className="folder-stack folder-stack--mobile">
+        <div className="folder-tabs-mobile" role="tablist" aria-label="About sections">
+          {TABS.map((tab) => {
+            const isActive = tab.id === activeId
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                role="tab"
+                id={`folder-tab-${tab.id}`}
+                aria-selected={isActive}
+                aria-controls={`folder-panel-${tab.id}`}
+                className="folder-tab-mobile"
+                style={{ background: tab.bg, color: tab.fg }}
+                onClick={() => setActiveId(tab.id)}
+              >
+                {tab.label}
+              </button>
+            )
+          })}
+        </div>
+
+        <div className="folder folder--mobile" style={{ background: active.bg, color: active.fg }}>
+          <div
+            className="folder__body"
+            id={`folder-panel-${activeId}`}
+            role="tabpanel"
+            aria-labelledby={`folder-tab-${activeId}`}
+          >
+            <active.Content onSelectTab={setActiveId} />
+          </div>
+        </div>
+
+        <FolderClips />
+      </div>
+    )
+  }
 
   return (
     <div

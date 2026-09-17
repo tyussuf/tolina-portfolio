@@ -2941,25 +2941,57 @@ body.has-note-cursor button {
   outline-offset: 2px;
 }
 
-/* At full 196px width, 4 tabs need ~784px to lay out side by side without
-   overlap — well past what a phone gives .folder-stack, so they collided
-   and ran off-screen. Shrinking --tab-w to a share of the (percentage-based)
-   slot width fixes that at any narrow viewport; the label drops to two
-   lines at this size instead of forcing a much tinier font to stay on one. */
-@media (max-width: 640px) {
-  .folder__tab {
-    --tab-w: 23%;
-    --tab-h: 44px;
-    font-size: 11px;
-    line-height: 1.15;
-    padding: 4px 4px 3px;
-    white-space: normal;
-  }
-}
-
 .folder__body {
   min-height: 28px;
   padding: clamp(32px, 5vw, 48px) clamp(24px, 5vw, 48px) clamp(32px, 5vw, 48px);
+}
+
+/* Below 640px, FolderStack renders a flat tab row instead of the fanned
+   stack above — no peeking back tabs, so no reserved top space needed. */
+.folder-stack--mobile {
+  padding-top: 0;
+  margin-bottom: clamp(48px, 10vh, 96px);
+}
+
+.folder-tabs-mobile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.folder-tab-mobile {
+  flex: 1 1 calc(50% - 4px);
+  min-width: 0;
+  padding: 10px 8px;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.folder-tab-mobile[aria-selected='true'] {
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(37, 26, 53, 0.25);
+}
+
+.folder-tab-mobile:focus-visible {
+  outline: 3px solid var(--honey-quartz);
+  outline-offset: 2px;
+}
+
+.folder--mobile {
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(37, 26, 53, 0.22);
 }
 
 /* The active (front) folder always animates to z-index 4 (TABS.length).
