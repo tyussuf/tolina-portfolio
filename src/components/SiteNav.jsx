@@ -12,6 +12,9 @@ function ArrowUpRight() {
   )
 }
 
+// Visible text is "Let's chat"; the label adds where it goes.
+const CHAT_LABEL = 'Let’s chat: schedule a meeting with me'
+
 export default function SiteNav() {
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
@@ -80,28 +83,30 @@ export default function SiteNav() {
                 LinkedIn <ArrowUpRight />
               </a>
             </li>
-            <li>
-              <a
-                href={LINKS.calendly}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Let’s chat: schedule a coffee chat with me on Calendly"
-                onClick={close}
-              >
-                Let&rsquo;s chat <ArrowUpRight />
-              </a>
-            </li>
           </ul>
 
           {/* Same link as the desktop pill on the right; this copy lives
               inside the hamburger panel so it's reachable below 900px. */}
-          <a href={LINKS.email} className="pill pill--email site-header__email-mobile" onClick={close}>
-            Email me
+          <a
+            href={LINKS.calendly}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pill pill--cta site-header__cta-mobile"
+            aria-label={CHAT_LABEL}
+            onClick={close}
+          >
+            Let&rsquo;s chat
           </a>
         </nav>
 
-        <a href={LINKS.email} className="pill pill--email site-header__email">
-          Email me
+        <a
+          href={LINKS.calendly}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pill pill--cta site-header__cta"
+          aria-label={CHAT_LABEL}
+        >
+          Let&rsquo;s chat
         </a>
 
         <button

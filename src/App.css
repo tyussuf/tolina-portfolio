@@ -352,19 +352,19 @@ body.has-note-cursor button {
   background: rgba(255, 255, 255, 0.16);
 }
 
-.pill--email {
+.pill--cta {
   flex: none;
   background: var(--orange);
   border-color: var(--orange);
   color: #fff;
 }
 
-.pill--email:hover {
+.pill--cta:hover {
   background: color-mix(in srgb, var(--orange) 80%, var(--ink));
   border-color: color-mix(in srgb, var(--orange) 80%, var(--ink));
 }
 
-.site-header__email-mobile,
+.site-header__cta-mobile,
 .site-header__toggle {
   display: none;
 }
@@ -427,7 +427,7 @@ body.has-note-cursor button {
     padding: 6px 6px 6px 12px;
   }
 
-  .site-header__email {
+  .site-header__cta {
     display: none;
   }
 
@@ -477,7 +477,7 @@ body.has-note-cursor button {
     width: 100%;
   }
 
-  .site-header__email-mobile {
+  .site-header__cta-mobile {
     display: inline-flex;
   }
 }
