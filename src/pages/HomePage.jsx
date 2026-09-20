@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import IntroSpin from '../components/IntroSpin.jsx'
 import HeroPolaroid from '../components/HeroPolaroid.jsx'
 import CaseCard from '../components/CaseCard.jsx'
+import Vinyl from '../components/Vinyl.jsx'
 import { useInView } from '../hooks/useInView.js'
 import { CASE_CARDS } from '../data/caseCards.js'
 
@@ -75,9 +76,13 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Wrapper carries the fade-up so the polaroid keeps its own tilt transform. */}
+          {/* Wrapper carries the fade-up so the polaroid keeps its own tilt transform.
+              The record sits behind the polaroid with its right edge sticking out. */}
           <div className="hero__photo">
-            <div {...heroItem(4)}>
+            <div {...heroItem(4, 'hero__stage')}>
+              <div className="hero__record" aria-hidden="true">
+                <Vinyl size={292} colorVariant="violet" style={{ width: '100%', height: 'auto', aspectRatio: '1 / 1' }} />
+              </div>
               <HeroPolaroid />
             </div>
           </div>

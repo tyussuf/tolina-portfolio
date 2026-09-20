@@ -714,7 +714,47 @@ body.has-note-cursor button {
 }
 
 .hero__photo {
+  --record-peek: 60px;
   flex: 0 0 324px;
+}
+
+.hero__stage {
+  position: relative;
+}
+
+/* Your own record (the Vinyl component) tucked behind the polaroid so a
+   crescent of it sticks out past the right edge, slowly turning. */
+.hero__record {
+  position: absolute;
+  z-index: 0;
+  top: 14%;
+  right: calc(-1 * var(--record-peek));
+  width: 90%;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+/* A plain circular shadow behind the record. Not filter: drop-shadow: on top
+   of the Vinyl's blend modes it made the polaroid photo above it paint white. */
+.hero__record::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  box-shadow: 0 14px 22px rgba(36, 20, 23, 0.35);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__record .vinyl__spin {
+    animation: hero-record-spin 18s linear infinite;
+  }
+}
+
+@keyframes hero-record-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .hero-polaroid {
@@ -723,6 +763,7 @@ body.has-note-cursor button {
   margin: 0;
   padding: 16px 16px 14px;
   border-radius: var(--r-photo);
+  z-index: 1;
   background: #fffdf8;
   box-shadow: 0 18px 38px rgba(36, 20, 23, 0.22);
   transform: rotate(-2.5deg);
@@ -1050,6 +1091,7 @@ body.has-note-cursor button {
   }
 
   .hero__photo {
+    --record-peek: 20px;
     flex: none;
     align-self: center;
     width: min(324px, 100%);
@@ -1075,21 +1117,40 @@ body.has-note-cursor button {
     margin-inline: auto;
   }
 
-  /* No record on small screens: the square cover fills the card width. */
+  /* Touch has no hover, so the record is already sliding out sideways: the
+     sleeve leaves a 44px strip on the right and the record peeks into it.
+     (With motion allowed it slides out as the card scrolls into view, below.) */
   .case-card__cover {
     height: auto;
-  }
-
-  .case-card__record {
-    display: none;
   }
 
   .case-card__sleeve {
     position: relative;
     top: auto;
+    width: calc(100% - 44px);
     height: auto;
     aspect-ratio: 1 / 1;
     box-shadow: none;
+  }
+
+  .case-card__record {
+    top: 8%;
+    left: auto;
+    right: 0;
+    width: calc((100% - 44px) * 0.86);
+    margin-inline: 0;
+  }
+}
+
+@media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
+  .case-card__record {
+    transition: transform 620ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-delay: calc(var(--reveal-delay, 0ms) + 350ms);
+  }
+
+  /* Starts tucked fully behind the sleeve, spinning out once the card is in view. */
+  .case-item:not(.is-visible) .case-card__record {
+    transform: translateX(-44px) rotate(-150deg);
   }
 }
 
