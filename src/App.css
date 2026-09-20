@@ -952,23 +952,6 @@ body.has-note-cursor button {
   object-fit: cover;
 }
 
-/* Backed by a dark chip: the covers put art (and, on BluePrint, the
-   Parental Advisory label) right where the marker lands. */
-.case-card__marker {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  padding: 0 10px;
-  border-radius: var(--r-photo);
-  background: rgba(36, 20, 23, 0.74);
-  color: #fff;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1.25;
-}
-
 .case-card__body {
   display: flex;
   flex: 1 1 auto;

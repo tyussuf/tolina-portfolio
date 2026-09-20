@@ -22,7 +22,6 @@ export const CASE_CARDS = [
     description: 'Learn Fashion. Shape Personal Style.',
     outcome: 'The mood board flow became a standout feature.',
     accent: '#34528c',
-    marker: 'A1',
     cover: blueprintCover,
   },
   {
@@ -33,7 +32,6 @@ export const CASE_CARDS = [
     description: 'Language Preservation through Play',
     outcome: '100% of users wanted an auditory element in Afaan Arcade',
     accent: '#ba4434',
-    marker: 'B1',
     cover: afaanArcadeCover,
   },
   {
@@ -44,7 +42,6 @@ export const CASE_CARDS = [
     description: 'Your Mobile Travel App Companion',
     outcome: 'Improved the overall navigation and usability of the app.',
     accent: '#5eabcc',
-    marker: 'C1',
     cover: odysseyCover,
   },
 ]
