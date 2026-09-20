@@ -64,7 +64,7 @@ export default function SectionKind({ section }) {
                 {/* Figure (not a bare <img>) so a still-TODO image field
                     keeps showing the labeled placeholder instead of a
                     broken image with the TODO text as its literal src. */}
-                <Figure image={section.image} />
+                <Figure image={section.image} alt={section.imageAlt} />
               </div>
             </div>
           ) : (

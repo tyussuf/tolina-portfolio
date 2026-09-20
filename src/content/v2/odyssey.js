@@ -26,7 +26,8 @@ export const odyssey = {
       body: [
         "Odyssey is a mobile travel companion app designed to streamline itinerary management, airport navigation, and personalized recommendations into one seamless experience. As team lead, I guided our group through the Goal-Directed Design process, coordinating research, persona development, and in creating a mobile travel app companion.",
       ],
-      image: "TODO: phone mockup, Odyssey home with recommended destinations",
+      image: "/images/odyssey/home-mockup.png",
+      imageAlt: "Odyssey home screen: a \"Hi, Femi\" greeting, Stays, Flights and Cars shortcuts, and recommended destinations",
     },
 
     {

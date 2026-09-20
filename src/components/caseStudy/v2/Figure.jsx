@@ -8,7 +8,7 @@ function isTodo(image) {
   return typeof image === 'string' && /^TODO:?/i.test(image.trim())
 }
 
-export default function Figure({ image, images, caption, className = '' }) {
+export default function Figure({ image, images, caption, alt, className = '' }) {
   // `images` (a plain array of real srcs) is for the handful of TODO slots
   // that turned out to describe more than one screen at once (e.g. "three
   // onboarding screens") — once real assets exist for all of them, they
@@ -38,7 +38,7 @@ export default function Figure({ image, images, caption, className = '' }) {
           <p className="csl-figure__todo-text">{image.replace(/^TODO:?\s*/i, '')}</p>
         </div>
       ) : (
-        <img src={image} alt={caption || ''} className="csl-figure__img" />
+        <img src={image} alt={alt ?? caption ?? ''} className="csl-figure__img" />
       )}
       {caption && !todo && <figcaption className="csl-figure__caption">{caption}</figcaption>}
     </figure>
