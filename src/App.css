@@ -1341,6 +1341,15 @@ body.has-note-cursor button {
   filter: none;
 }
 
+/* Below the mobile breakpoint the content runs almost edge to edge, so the
+   posters only showed as cut-off slivers behind it (and, on About, bled
+   through the faded folder tabs). Hide them there. */
+@media (max-width: 899px) {
+  .poster-wall {
+    display: none;
+  }
+}
+
 /* ---------- Detail overlay ---------- */
 
 .detail-overlay {

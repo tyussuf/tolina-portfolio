@@ -13,12 +13,13 @@ import sadeCover from '../assets/posters/sade-love-deluxe.png'
 // would fight the cutout instead of reading as a record.
 const SIZE = 130
 
-// The top pair starts at 14% (was 6%) so it clears the white header text that
-// now sits directly on the background.
+// The top pair never starts above 214px, so it always clears the sticky header
+// and the "CASE STUDIES" / "ABOUT ME" marquee band under it (which ends at
+// ~198px); the middle pair is pushed down to keep the same gap below it.
 
 const posters = [
-  { src: itoCover, alt: 'Imperial Tiger Orchestra — Mercato', top: '14%', left: '3%', rotate: -8, z: 1, framed: true },
-  { src: stevieCover, alt: 'Stevie Wonder — Songs In The Key Of Life', top: '14%', left: '86%', rotate: 6, z: 1, framed: true },
+  { src: itoCover, alt: 'Imperial Tiger Orchestra — Mercato', top: 'max(14%, 214px)', left: '3%', rotate: -8, z: 1, framed: true },
+  { src: stevieCover, alt: 'Stevie Wonder — Songs In The Key Of Life', top: 'max(14%, 214px)', left: '86%', rotate: 6, z: 1, framed: true },
 
   // Both unframed cutouts sit on a canvas with a lot of transparent padding
   // around the actual sleeve + disc artwork (Smiths' artwork is ~58% of its
@@ -26,8 +27,8 @@ const posters = [
   // posters' 130px left the visible artwork looking noticeably smaller.
   // widthScale is tuned per image so the visible artwork's area matches a
   // 130x130 framed poster's, not the canvas itself.
-  { src: smithsCover, alt: 'The Smiths — Hatful of Hollow', top: '40%', left: '3%', rotate: 7, z: 1, framed: false, widthScale: 1.31 },
-  { src: sadeCover, alt: 'Sade — Love Deluxe', top: '40%', left: '86%', rotate: 5, z: 1, framed: false, widthScale: 1.35 },
+  { src: smithsCover, alt: 'The Smiths — Hatful of Hollow', top: 'max(40%, 380px)', left: '3%', rotate: 7, z: 1, framed: false, widthScale: 1.31 },
+  { src: sadeCover, alt: 'Sade — Love Deluxe', top: 'max(40%, 380px)', left: '86%', rotate: 5, z: 1, framed: false, widthScale: 1.35 },
 
   { src: janetCover, alt: 'Janet Jackson — The Velvet Rope', top: '76%', left: '2%', rotate: 5, z: 1, framed: true },
   { src: fairuzCover, alt: 'Fairuz — Modern Favorites', top: '76%', left: '85%', rotate: -6, z: 1, framed: true },
