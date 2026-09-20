@@ -7,7 +7,7 @@ import redBlueCometStar from '../assets/stars-intro/red-blue-comet-star.png'
 
 const SESSION_KEY = 'introSpinPlayed'
 
-export default function IntroSpin() {
+export default function IntroSpin({ onDone }) {
   const [phase, setPhase] = useState(() => {
     const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
     const alreadyPlayed = sessionStorage.getItem(SESSION_KEY)
@@ -19,6 +19,12 @@ export default function IntroSpin() {
     if (phase === 'spinning') {
       sessionStorage.setItem(SESSION_KEY, '1')
     }
+  }, [phase])
+
+  useEffect(() => {
+    if (phase === 'done') onDone?.()
+    // onDone is a fresh closure each render; the phase change is the only trigger.
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [phase])
 
   if (phase === 'done') return null

@@ -1,24 +1,36 @@
-import { useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import IntroSpin from '../components/IntroSpin.jsx'
-import HeroSubtitle from '../components/HeroSubtitle.jsx'
-import { records } from '../data/records.js'
+import HeroPolaroid from '../components/HeroPolaroid.jsx'
+import CaseCard from '../components/CaseCard.jsx'
+import { useInView } from '../hooks/useInView.js'
+import { CASE_CARDS } from '../data/caseCards.js'
 
-const SKILLS = [
-  'UX Research',
-  'Agile',
-  'Product Strategy',
-  'User Interface Design',
-  'Front-End Development',
-  'Figma',
-  'Miro',
-  'Adobe Creative Cloud',
-  'A/B Testing',
-]
+const HERO_STAGGER_MS = 60
+const CARD_STAGGER_MS = 80
+
+// Fades up on viewport entry, staggered by grid position.
+function RevealCard({ project, index }) {
+  const [ref, inView] = useInView()
+  return (
+    <li
+      ref={ref}
+      className={`case-item reveal${inView ? ' is-visible' : ''}`}
+      style={{ '--reveal-delay': `${index * CARD_STAGGER_MS}ms` }}
+    >
+      <CaseCard project={project} />
+    </li>
+  )
+}
 
 export default function HomePage() {
-  const [featured, secondary, tertiary] = records
   const { hash } = useLocation()
+  // The hero entrance waits for the one-time intro spin (IntroSpin calls
+  // onDone straight away if it's skipped), then flips on after the hidden
+  // starting state has been laid out, so the transition actually runs.
+  const heroRef = useRef(null)
+  const [introDone, setIntroDone] = useState(false)
+  const [heroReady, setHeroReady] = useState(false)
 
   useEffect(() => {
     if (!hash) return
@@ -26,63 +38,65 @@ export default function HomePage() {
     target?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }, [hash])
 
+  useEffect(() => {
+    if (!introDone) return
+    // Reading layout flushes the hidden starting styles first, so flipping the
+    // class below always animates (no dependence on frame timing).
+    heroRef.current?.getBoundingClientRect()
+    setHeroReady(true)
+  }, [introDone])
+
+  // className is merged, not spread, so it can sit next to an element's own class.
+  const heroItem = (order, base = '') => ({
+    className: `${base ? `${base} ` : ''}reveal${heroReady ? ' is-visible' : ''}`,
+    style: { '--reveal-delay': `${order * HERO_STAGGER_MS}ms` },
+  })
+
   return (
-    <>
-      <IntroSpin />
+    <main className="home">
+      <IntroSpin onDone={() => setIntroDone(true)} />
 
-      <header className="hero" id="about">
-        <div className="hero__card">
-          <p className="hero__eyebrow">Studying IAD &amp; IS @ KSU</p>
-          <h1 className="hero__title">Hi, I&rsquo;m Tolina Yussuf!</h1>
-          <HeroSubtitle />
+      <div className="page-card">
+        <section className="hero" id="about" aria-labelledby="hero-title" ref={heroRef}>
+          <div className="hero__text">
+            <p {...heroItem(0, 'eyebrow')}>
+              Studying IAD &amp; IS @ KSU
+            </p>
+            <h1 id="hero-title" {...heroItem(1, 'hero__title')}>
+              Hi, I&rsquo;m Tolina Yussuf!
+            </h1>
+            <p {...heroItem(2, 'hero__lede')}>
+              UX/UI designer. I do the research, then I build the thing, and I&rsquo;m usually the one asking{' '}
+              <span className="hero__mark">who this leaves out</span>.
+            </p>
+            <p {...heroItem(3, 'hero__status')}>
+              Graduating May 2027, and looking for{' '}
+              <span className="hero__roles">Spring 2027 UX/UI Internships and New Grad Product Design roles</span>.
+            </p>
+          </div>
 
-          <ul className="skills">
-            {SKILLS.map((skill, index) => (
-              <li
-                key={skill}
-                className="skills__pill"
-                style={{ '--tilt': `${index % 2 === 0 ? -1 : 1}deg` }}
-              >
-                {skill}
-              </li>
+          {/* Wrapper carries the fade-up so the polaroid keeps its own tilt transform. */}
+          <div className="hero__photo">
+            <div {...heroItem(4)}>
+              <HeroPolaroid />
+            </div>
+          </div>
+        </section>
+
+        <section className="cases" id="work" aria-labelledby="cases-title">
+          <p className="eyebrow">These are my case studies</p>
+          <h2 className="cases__title" id="cases-title">
+            Drop the needle.
+          </h2>
+          <p className="cases__lede">A few records deep in the crate.</p>
+
+          <ul className="cases__grid">
+            {CASE_CARDS.map((project, index) => (
+              <RevealCard key={project.id} project={project} index={index} />
             ))}
           </ul>
-
-          <div className="teaser__intro">
-            <p className="teaser__eyebrow">These are my case studies</p>
-            <h2 className="teaser__heading">Drop the needle.</h2>
-            <p className="teaser__lede">A few records deep in the crate.</p>
-
-            <div className="teaser__stack">
-              <Link
-                to={`/work/${tertiary.id}`}
-                className="teaser__cover teaser__cover--side"
-                aria-label={`View ${tertiary.title} case study`}
-              >
-                <img src={tertiary.cover} alt={`${tertiary.title} cover art`} draggable={false} />
-              </Link>
-              <Link
-                to={`/work/${featured.id}`}
-                className="teaser__cover teaser__cover--front"
-                aria-label={`View ${featured.title} case study`}
-              >
-                <img src={featured.cover} alt={`${featured.title} cover art`} draggable={false} />
-              </Link>
-              <Link
-                to={`/work/${secondary.id}`}
-                className="teaser__cover teaser__cover--side"
-                aria-label={`View ${secondary.title} case study`}
-              >
-                <img src={secondary.cover} alt={`${secondary.title} cover art`} draggable={false} />
-              </Link>
-            </div>
-
-            <Link to="/work" className="teaser__cta">
-              Browse the Collection <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </div>
-      </header>
-    </>
+        </section>
+      </div>
+    </main>
   )
 }

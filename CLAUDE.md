@@ -30,6 +30,25 @@ Strict 8pt grid. Spacing scale: 4, 8, 16, 24, 32, 48, 64, 96, 128.
 Radius scale: 4, 12, 28. Line heights resolve to multiples of 4px.
 Borders, radius, and letter-spacing are exempt from the 8pt rule.
 
+## Design tokens
+
+Brand colors, type scale and named radii live in `src/index.css` as plain CSS custom properties
+(`--ink`, `--cream`, `--orange`, `--r-page`, `--fs-h1`, …) and are mirrored into the Tailwind theme
+(`bg-ink`, `text-orange`, `rounded-case`). Change a value in `:root` and both stay in sync.
+
+Type is the site's original pair, not the Playfair/Archivo pair from the first pass of the design spec
+(reverted at the user's request): `--font-display` (Adobe Caslon Pro, falling back to Crimson Text) and
+`--font-body` (Crimson Text), both defined in `App.css`. The `--fs-*` scale is sized for Crimson, which
+sets smaller than a sans at the same px, so body sizes run 17-24px.
+
+The named radii (26 page card, 16 case card, 3 photo frame, 999 pill) and the 56/64/54px values in the
+home page CSS come from the design spec and intentionally sit outside the 4/12/28 radius scale and 8pt
+spacing rules above. The header, footer and home page use these tokens.
+
+The header is a sticky frosted ink pill (white text on bare gradient measured as low as ~1.5:1), and the
+footer, which sits directly on the gradient, carries an ink scrim (`.site-footer::before`). `.page` uses
+`overflow-x: clip`, not `hidden`, because `hidden` would stop the sticky header from sticking.
+
 ## Structure notes
 
 - `public/icons.svg` is an SVG sprite referenced via `<use href="/icons.svg#icon-id">` — this pattern (rather than importing individual icon files) is the existing convention for icons.

@@ -1,19 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import cdStarLogo from '../assets/logo/cd-star.jpg'
+import { Link, useLocation } from 'react-router-dom'
+import logoMark from '../assets/logo/cd-star-96.webp'
 import { LINKS } from '../data/links.js'
 
 function ArrowUpRight() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      width="16"
-      height="16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.4"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.6" aria-hidden="true">
       <path d="M7 17L17 7" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
@@ -22,10 +14,14 @@ function ArrowUpRight() {
 
 export default function SiteNav() {
   const [open, setOpen] = useState(false)
+  const { pathname } = useLocation()
 
-  // Below the mobile breakpoint the link list moves into a dropdown panel
-  // toggled by the hamburger button — closing it on route change (via the
-  // links themselves) and on Escape keeps it from getting stuck open.
+  // "Work" is the home page's own content (the case study cards) as well as
+  // /work and every case study, so it stays filled across all of those;
+  // only /about flips the filled pill to "About".
+  const aboutActive = pathname.startsWith('/about')
+  const workActive = !aboutActive
+
   useEffect(() => {
     if (!open) return undefined
     function handleKey(event) {
@@ -35,68 +31,92 @@ export default function SiteNav() {
     return () => window.removeEventListener('keydown', handleKey)
   }, [open])
 
+  const close = () => setOpen(false)
+
   return (
-    <nav className="site-nav">
-      <Link to="/" className="site-nav__logo" onClick={() => setOpen(false)}>
-        <img src={cdStarLogo} alt="" className="site-nav__logo-badge" aria-hidden="true" />
-        Tolina Yussuf
-      </Link>
+    <header className="site-header">
+      <div className="site-header__bar">
+        <Link to="/" className="site-header__brand" onClick={close}>
+          <span className="site-header__logo">
+            <img src={logoMark} alt="" width="32" height="32" aria-hidden="true" />
+          </span>
+          <span className="site-header__name">Tolina Yussuf</span>
+        </Link>
 
-      <ul className={`site-nav__links${open ? ' site-nav__links--open' : ''}`} id="site-nav-links">
-        <li>
-          <Link to="/work" onClick={() => setOpen(false)}>
-            Work
-          </Link>
-        </li>
-        <li>
-          <Link to="/about" onClick={() => setOpen(false)}>
-            About
-          </Link>
-        </li>
-        <li>
-          <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-            LinkedIn
-          </a>
-        </li>
-        <li>
-          <a href={LINKS.resume} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-            Resume
-          </a>
-        </li>
-        {/* Same destination as .site-nav__cta below — that pill is hidden
-            below 880px (see App.css) since it's what crammed the compact
-            bar into two wrapped lines; this copy takes its place inside
-            the dropdown instead, so "Let's chat" stays reachable on
-            mobile without fighting the hamburger + logo for room. */}
-        <li className="site-nav__cta-mobile">
-          <a href={LINKS.calendly} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-            Let&rsquo;s chat <ArrowUpRight />
-          </a>
-        </li>
-      </ul>
+        <nav className={`site-header__menu${open ? ' site-header__menu--open' : ''}`} id="site-menu" aria-label="Primary">
+          <ul className="site-header__pages">
+            <li>
+              <Link
+                to="/work"
+                className={`pill${workActive ? ' pill--filled' : ' pill--outline'}`}
+                aria-current={workActive ? 'page' : undefined}
+                onClick={close}
+              >
+                Work
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                className={`pill${aboutActive ? ' pill--filled' : ' pill--outline'}`}
+                aria-current={aboutActive ? 'page' : undefined}
+                onClick={close}
+              >
+                About
+              </Link>
+            </li>
+          </ul>
 
-      <button
-        type="button"
-        className="site-nav__toggle"
-        aria-expanded={open}
-        aria-controls="site-nav-links"
-        aria-label={open ? 'Close menu' : 'Open menu'}
-        onClick={() => setOpen((value) => !value)}
-      >
-        <span />
-        <span />
-        <span />
-      </button>
+          <span className="site-header__divider" aria-hidden="true" />
 
-      <a
-        href={LINKS.calendly}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="site-nav__cta"
-        aria-label="Schedule a coffee chat with me on Calendly"
-      >
-        Let&rsquo;s chat <ArrowUpRight />
-      </a>
-    </nav>
+          <ul className="site-header__external">
+            <li>
+              <a href={LINKS.resume} target="_blank" rel="noopener noreferrer" onClick={close}>
+                Résumé <ArrowUpRight />
+              </a>
+            </li>
+            <li>
+              <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" onClick={close}>
+                LinkedIn <ArrowUpRight />
+              </a>
+            </li>
+            <li>
+              <a
+                href={LINKS.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Let’s chat: schedule a coffee chat with me on Calendly"
+                onClick={close}
+              >
+                Let&rsquo;s chat <ArrowUpRight />
+              </a>
+            </li>
+          </ul>
+
+          {/* Same link as the desktop pill on the right; this copy lives
+              inside the hamburger panel so it's reachable below 900px. */}
+          <a href={LINKS.email} className="pill pill--email site-header__email-mobile" onClick={close}>
+            Email me
+          </a>
+        </nav>
+
+        <a href={LINKS.email} className="pill pill--email site-header__email">
+          Email me
+        </a>
+
+        <button
+          type="button"
+          className="site-header__toggle"
+          aria-expanded={open}
+          aria-controls="site-menu"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
+    </header>
   )
 }

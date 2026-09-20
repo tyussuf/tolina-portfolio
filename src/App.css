@@ -20,8 +20,7 @@
 
 :root {
   --paper: #f7f2e7;
-  --cream: #f6f1e8;
-  --ink: #251a35;
+  /* --ink, --cream and the other brand tokens live in index.css */
   --ink-muted: #6a5f7d;
 
   --honey-quartz: #f7b720;
@@ -105,7 +104,11 @@ body.has-note-cursor button {
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
+  /* clip, not hidden: hidden makes .page a scroll container, which stops the
+     sticky header from sticking to the viewport. Browsers without clip fall
+     back to hidden (same look, header just isn't sticky there). */
   overflow-x: hidden;
+  overflow-x: clip;
   background-color: var(--paper);
   background-image: radial-gradient(var(--dot) 1px, transparent 1px);
   background-position: 0 0;
@@ -202,232 +205,284 @@ body.has-note-cursor button {
   text-shadow: 0 0 6px currentColor;
 }
 
-/* ---------- Nav ---------- */
+/* ---------- Header ---------- */
 
-.site-nav {
+/* Every header text color is pure white. The bar itself is a frosted ink pill
+   rather than bare text on the gradient (which reads as low as ~1.5:1 in
+   places), so white holds ~9:1 or better wherever the background is. It's
+   sticky so the nav stays in view while scrolling. */
+.site-header {
   position: sticky;
-  top: 16px;
+  top: 0;
   z-index: 20;
+  padding: 16px 24px 0;
+  font-family: var(--font-body);
+  color: #fff;
+}
+
+.site-header__bar {
   display: flex;
   align-items: center;
-  gap: 24px;
-  margin: 16px clamp(8px, 4vw, 48px) 0;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 999px;
-  /* Lighter purple than the first pass — halfway between the Vinyl
-     component's "violet" base and --star-plum. Set to 0.5 on request;
-     the previous 0.78 was chosen to keep white nav text above 4.5:1
-     contrast over bright scrolled backgrounds — at 0.5 that floor is
-     no longer guaranteed, worth a contrast check over the brightest
-     poster/collage backgrounds. */
-  background: rgba(94, 63, 117, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 18px rgba(37, 26, 53, 0.22);
+  gap: 16px;
+  max-width: 1040px;
+  margin-inline: auto;
+  padding: 8px 8px 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--r-pill);
+  background: rgba(36, 20, 23, 0.82);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: 0 12px 32px rgba(28, 14, 22, 0.4);
 }
 
-.site-nav__logo {
+.site-header__brand {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
+  gap: 12px;
+  flex: none;
   color: #fff;
   text-decoration: none;
-  white-space: nowrap;
-  /* At 0.5 background opacity (see the note above) white text can dip
-     below 4.5:1 over bright scrolled-under content; a dark shadow keeps it
-     legible without walking back the lighter pill look. */
-  text-shadow: 0 1px 3px rgba(37, 26, 53, 0.55);
+  border-radius: var(--r-pill);
 }
 
-.site-nav__logo-badge {
+.site-header__logo {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--pink);
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
+}
+
+.site-header__logo img {
   display: block;
   width: 32px;
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
-.site-nav__links {
+.site-header__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.site-header__menu {
   display: flex;
   align-items: center;
-  gap: clamp(8px, 1.6vw, 16px);
-  list-style: none;
-  margin: 0 auto;
+  gap: 16px;
+  margin-inline: auto;
+}
+
+.site-header__pages,
+.site-header__external {
+  display: flex;
+  align-items: center;
+  margin: 0;
   padding: 0;
-  font-family: var(--font-body);
-  font-size: 18px;
+  list-style: none;
 }
 
-.site-nav__links a {
-  display: inline-block;
-  padding: 8px 24px;
-  color: #fff;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 999px;
-  font-weight: 600;
-  text-decoration: none;
-  text-shadow: 0 1px 3px rgba(37, 26, 53, 0.55);
-  transition: background 0.2s, transform 0.2s;
+.site-header__pages {
+  gap: 8px;
 }
 
-.site-nav__links a:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: scale(1.04);
+.site-header__external {
+  gap: 16px;
 }
 
-.site-nav__cta {
+.site-header__divider {
+  flex: none;
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.site-header__external a {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  flex: none;
-  padding: 8px 16px;
-  border: 2px solid #fff;
-  border-radius: 999px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 600;
+  gap: 4px;
+  min-height: 44px;
   color: #fff;
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
   text-decoration: none;
-  text-shadow: 0 1px 3px rgba(37, 26, 53, 0.55);
-  white-space: nowrap;
-  transition: background 0.2s, color 0.2s;
+  border-radius: 4px;
 }
 
-.site-nav__cta:hover {
-  background: var(--star-pink);
-  border-color: var(--star-pink);
+.site-header__external a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
-.site-nav__toggle {
-  display: none;
-  flex: none;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
+.pill {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  gap: 6px;
+  height: 44px;
+  padding: 0 22px;
+  border: 2px solid transparent;
+  border-radius: var(--r-pill);
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 200ms ease, border-color 200ms ease;
 }
 
-.site-nav__toggle span {
+.pill--filled {
+  background: var(--cream);
+  border-color: var(--cream);
+  color: var(--ink);
+}
+
+.pill--outline {
+  border-color: rgba(255, 255, 255, 0.82);
+  color: #fff;
+}
+
+.pill--outline:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.pill--email {
+  flex: none;
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #fff;
+}
+
+.pill--email:hover {
+  background: color-mix(in srgb, var(--orange) 80%, var(--ink));
+  border-color: color-mix(in srgb, var(--orange) 80%, var(--ink));
+}
+
+.site-header__email-mobile,
+.site-header__toggle {
+  display: none;
+}
+
+.site-header__toggle {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.site-header__toggle span {
   display: block;
   width: 22px;
   height: 2px;
   border-radius: 2px;
   background: #fff;
-  box-shadow: 0 1px 2px rgba(37, 26, 53, 0.5);
 }
 
-/* Hidden on desktop — this li only exists to give the CTA a home inside
-   the mobile dropdown (see the media query below and the comment in
-   SiteNav.jsx); on desktop the standalone .site-nav__cta pill covers it. */
-.site-nav__cta-mobile {
-  display: none;
+/* Ring for elements sitting directly on the gradient: an ink inner band plus
+   a white outer band, so it reads on the pink, the orange and the yellow. */
+.site-header :focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--ink);
 }
 
-@media (max-width: 880px) {
-  .site-nav {
-    position: relative;
-    flex-wrap: nowrap;
+/* Just above the hamburger breakpoint the full menu is a tight fit, so trim
+   the pill padding and gaps a little until there's room again. */
+@media (min-width: 900px) and (max-width: 1080px) {
+  .site-header__bar,
+  .site-header__menu {
+    gap: 10px;
   }
 
-  .site-nav__toggle {
+  .site-header__external {
+    gap: 12px;
+  }
+
+  .pill {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 899px) {
+  .site-header {
+    padding: 12px 16px 0;
+  }
+
+  .site-header__bar {
+    padding: 6px 6px 6px 12px;
+  }
+
+  .site-header__email {
+    display: none;
+  }
+
+  .site-header__toggle {
     display: inline-flex;
-    margin-left: auto;
   }
 
-  /* The compact bar only has room for the logo + hamburger without
-     wrapping — the CTA moves into the dropdown (.site-nav__cta-mobile)
-     instead of fighting them for space here. */
-  .site-nav__cta {
+  .site-header__menu {
     display: none;
   }
 
-  .site-nav__cta-mobile {
-    display: list-item;
-  }
-
-  .site-nav__links {
-    display: none;
-  }
-
-  .site-nav__links--open {
+  .site-header__menu--open {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 16px;
+    right: 16px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
     margin: 0;
     padding: 16px;
-    border-radius: 20px;
-    background: rgba(58, 39, 74, 0.96);
-    box-shadow: 0 12px 30px rgba(37, 26, 53, 0.35);
-    z-index: 30;
+    border-radius: var(--r-case);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: var(--ink);
+    box-shadow: 0 24px 48px rgba(36, 20, 23, 0.4);
   }
 
-  .site-nav__links--open a {
-    display: flex;
-    align-items: center;
+  .site-header__pages,
+  .site-header__external {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .site-header__external a {
     justify-content: center;
-    gap: 6px;
+    font-size: 19px;
+  }
+
+  .site-header__divider {
     width: 100%;
-    text-align: center;
-    padding: 12px 16px;
+    height: 1px;
+  }
+
+  .site-header__menu--open .pill {
+    width: 100%;
+  }
+
+  .site-header__email-mobile {
+    display: inline-flex;
   }
 }
 
-/* ---------- Hero ---------- */
-
-.hero {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  padding: clamp(32px, 7vh, 64px) 24px clamp(16px, 4vh, 32px);
-}
-
-.hero__card {
-  max-width: 640px;
-  text-align: center;
-  padding: clamp(32px, 5vh, 48px) clamp(24px, 6vw, 48px);
-  border-radius: 22px;
-  background: rgba(247, 242, 231, 0.86);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 24px 60px rgba(37, 26, 53, 0.22);
-}
-
-.hero__eyebrow {
-  margin: 0 0 8px;
-  font-family: var(--font-body);
-  font-size: 13px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--terracotta);
-}
-
-.hero__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-style: italic;
-  font-size: clamp(34px, 6.4vw, 60px);
-  line-height: 1.08;
-  color: var(--ink);
-}
+/* ---------- Hero subtitle + skills pills (legacy: not rendered on the home page any more) ---------- */
 
 .hero__subtitle {
   position: relative;
@@ -547,134 +602,495 @@ body.has-note-cursor button {
   color: #fff;
 }
 
-/* ---------- Home teaser ---------- */
+/* ---------- Home: page card ---------- */
 
-.teaser {
+.home {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: clamp(24px, 5vh, 48px) 24px clamp(48px, 9vh, 96px);
-  text-align: center;
-}
-
-.teaser__intro {
-  margin-top: 32px;
-  padding-top: 28px;
-  border-top: 1px solid var(--line);
-}
-
-.teaser__eyebrow {
-  margin: 0 0 8px;
+  padding: 24px 24px 40px;
   font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--terracotta);
+  color: var(--body);
 }
 
-.teaser__heading {
+.page-card {
+  max-width: 1040px;
+  margin-inline: auto;
+  padding: 56px clamp(32px, 6vw, 64px);
+  border-radius: var(--r-page);
+  background: var(--cream);
+  box-shadow: 0 40px 90px rgba(28, 14, 22, 0.5);
+}
+
+.page-card :focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.eyebrow {
   margin: 0;
-  font-family: var(--font-display);
+  font-size: var(--fs-eyebrow);
   font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+/* Fade-up entrance shared by the hero items (on load) and the case cards
+   (on viewport entry). Delay comes from --reveal-delay per element. */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms ease, transform 600ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Home: hero ---------- */
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.hero__text {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: left;
+}
+
+.hero__title {
+  margin: 16px 0 0;
+  font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 700;
+  font-size: var(--fs-h1);
+  line-height: 1.05;
   color: var(--ink);
 }
 
-.teaser__stack {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: clamp(110px, 30vw, 230px);
-  margin: 32px auto;
+.hero__lede {
+  margin: 24px 0 0;
+  max-width: 34em;
+  font-size: var(--fs-body-lg);
+  line-height: 1.55;
+  color: var(--body);
 }
 
-.teaser__cover {
+.hero__mark,
+.hero__roles {
+  color: var(--orange);
+  font-weight: 600;
+  border-bottom: 2px solid var(--orange);
+}
+
+.hero__status {
+  margin: 20px 0 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.55;
+  color: var(--body);
+}
+
+.hero__roles {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: var(--fs-body-md);
+}
+
+.hero__photo {
+  flex: 0 0 324px;
+}
+
+.hero-polaroid {
   position: relative;
+  width: min(324px, 100%);
+  margin: 0;
+  padding: 16px 16px 14px;
+  border-radius: var(--r-photo);
+  background: #fffdf8;
+  box-shadow: 0 18px 38px rgba(36, 20, 23, 0.22);
+  transform: rotate(-2.5deg);
+}
+
+.hero-polaroid__photo {
   display: block;
-  flex: none;
-  height: 100%;
+  width: 100%;
+  height: auto;
   aspect-ratio: 1 / 1;
-  border-radius: 0;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(37, 26, 53, 0.35);
-  transition: transform 0.25s, filter 0.25s;
+  object-fit: cover;
 }
 
-.teaser__cover img {
+/* Reads like the liner notes on the back of a record sleeve: a small
+   letterspaced heading over an italic note, under a hairline rule. */
+.hero-polaroid__caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+}
+
+.hero-polaroid__label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-polaroid__note {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: var(--fs-body-md);
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+/* ---------- Home: case studies ---------- */
+
+.cases {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid var(--rule);
+}
+
+.cases__title {
+  margin: 12px 0 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.cases__lede {
+  margin: 12px 0 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: var(--fs-body-md);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.cases__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin: 64px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-item {
+  display: flex;
+}
+
+/* ---------- Case card (vinyl sleeve + record) ---------- */
+
+.case-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-case);
+  background: var(--card);
+  box-shadow: 0 10px 24px rgba(36, 20, 23, 0.1);
+  color: inherit;
+  text-decoration: none;
+}
+
+.case-card:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+}
+
+/* The sleeve runs flush to the card's top edge (no beige band above it), so
+   nothing here clips: the record rises out past the card's top edge on hover. */
+.case-card__cover {
+  position: relative;
+  height: 282px;
+}
+
+/* Sits fully behind the sleeve at rest and slides up out of it on hover. The
+   conic layer is a soft light reflection so the 150deg spin is visible on
+   an otherwise rotationally-symmetric disc. */
+.case-card__record {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  left: 0;
+  right: 0;
+  width: min(230px, 84%);
+  margin-inline: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0 18%,
+      rgba(255, 255, 255, 0.11) 24%,
+      transparent 30% 68%,
+      rgba(255, 255, 255, 0.08) 74%,
+      transparent 80%
+    ),
+    radial-gradient(circle, #241417 0 13%, #0e0709 13% 15%, #1c1015 15% 100%);
+}
+
+.case-card__record::before {
+  content: '';
+  position: absolute;
+  inset: 44px;
+  border: 1px solid rgba(246, 239, 227, 0.16);
+  border-radius: 50%;
+}
+
+.case-card__record::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 10px;
+  height: 10px;
+  margin: auto;
+  border-radius: 50%;
+  background: var(--cream);
+}
+
+.case-card__label {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 68px;
+  height: 68px;
+  margin: auto;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.case-card__sleeve {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 282px;
+  overflow: hidden;
+  /* one step inside the card's 1px border, so the corners line up */
+  border-radius: calc(var(--r-case) - 1px) calc(var(--r-case) - 1px) 0 0;
+  background: var(--crate);
+}
+
+.case-card__sleeve img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-.teaser__cover--side {
-  z-index: 1;
-  height: 80%;
-  align-self: center;
-  filter: brightness(0.88) saturate(1);
-  transform: translateY(4%);
-  margin-inline: -4%;
-}
-
-.teaser__cover--side:hover,
-.teaser__cover--side:focus-visible {
-  filter: brightness(1);
-}
-
-.teaser__cover--front {
-  z-index: 2;
-}
-
-.teaser__cover--front:hover,
-.teaser__cover--front:focus-visible {
-  transform: scale(1.03);
-}
-
-.teaser__cover:focus-visible {
-  outline: 3px solid var(--honey-quartz);
-  outline-offset: 3px;
-}
-
-.teaser__lede {
-  margin: 16px 0 0;
-  font-size: clamp(17px, 2vw, 19px);
-  color: var(--ink-muted);
+/* Backed by a dark chip: the covers put art (and, on BluePrint, the
+   Parental Advisory label) right where the marker lands. */
+.case-card__marker {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 0 10px;
+  border-radius: var(--r-photo);
+  background: rgba(36, 20, 23, 0.74);
+  color: #fff;
+  font-family: var(--font-display);
   font-style: italic;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.25;
 }
 
-.teaser__cta {
+.case-card__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.case-card__chip {
+  align-self: flex-start;
+  padding: 4px 12px;
+  border-radius: var(--r-pill);
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.case-card__title {
+  margin: 14px 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-card-title);
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.case-card__desc {
+  margin: 8px 0 0;
+  font-size: var(--fs-body-sm);
+  line-height: 1.5;
+  color: var(--body);
+}
+
+.case-card__outcome {
+  margin: 12px 0 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--pink);
+}
+
+.case-card__cta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 16px;
-  padding: 16px 32px;
-  min-height: 44px;
-  border: none;
-  border-radius: 999px;
-  background: var(--ink);
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: clamp(18px, 2.6vw, 22px);
-  box-shadow: 0 12px 28px rgba(37, 26, 53, 0.28);
-  transition: background 0.2s, transform 0.2s;
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  color: var(--ink);
 }
 
-.teaser__cta:hover {
-  background: var(--star-plum);
-  transform: scale(1.04);
+.case-card__cta svg {
+  flex: none;
 }
 
-.teaser__cta:focus-visible {
-  outline: 3px solid var(--honey-quartz);
-  outline-offset: 3px;
+/* Hover / keyboard focus: the record slides up and spins, the sleeve drops
+   away, the card lifts. All of the movement is opt-in via no-preference, so
+   reduced-motion users get none of it (the focus ring still shows). The
+   shadow deepens without moving anything, so it stays for everyone. */
+@media (min-width: 900px) {
+  .case-card:is(:hover, :focus-visible) {
+    box-shadow: 0 24px 46px rgba(36, 20, 23, 0.26);
+  }
+}
+
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  .case-card {
+    transition: transform 320ms ease, box-shadow 320ms ease;
+  }
+
+  .case-card__record,
+  .case-card__sleeve {
+    transition: transform 620ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .case-card__cta svg {
+    transition: transform 320ms ease;
+  }
+
+  .case-card:is(:hover, :focus-visible) {
+    transform: translateY(-6px);
+  }
+
+  .case-card:is(:hover, :focus-visible) .case-card__record {
+    transform: translateY(-54px) rotate(150deg);
+  }
+
+  /* The in-front shadow only exists while the record is out: at rest it
+     would smudge the cream above the card, since the sleeve now sits on the
+     card's top edge. */
+  .case-card:is(:hover, :focus-visible) .case-card__sleeve {
+    transform: translateY(10px);
+    box-shadow: 0 -4px 18px rgba(36, 20, 23, 0.28);
+  }
+
+  .case-card:is(:hover, :focus-visible) .case-card__cta svg {
+    transform: translateX(4px);
+  }
+}
+
+@media (max-width: 899px) {
+  .home {
+    padding: 16px 16px 24px;
+  }
+
+  .page-card {
+    padding: 24px;
+  }
+
+  .hero {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+  }
+
+  .hero__title {
+    font-size: clamp(40px, 11vw, var(--fs-h1));
+  }
+
+  .hero__photo {
+    flex: none;
+    align-self: center;
+    width: min(324px, 100%);
+  }
+
+  .cases {
+    margin-top: 48px;
+    padding-top: 32px;
+  }
+
+  .cases__title {
+    font-size: clamp(36px, 9vw, var(--fs-h2));
+  }
+
+  .cases__grid {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 40px;
+  }
+
+  .case-item {
+    width: 100%;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+
+  /* No record on small screens: the square cover fills the card width. */
+  .case-card__cover {
+    height: auto;
+  }
+
+  .case-card__record {
+    display: none;
+  }
+
+  .case-card__sleeve {
+    position: relative;
+    top: auto;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    box-shadow: none;
+  }
 }
 
 /* ---------- Work shelf (case studies grid) ---------- */
@@ -835,147 +1251,69 @@ body.has-note-cursor button {
 
 /* ---------- Footer ---------- */
 
+/* Sits directly on the gradient like the header, with the same kind of scrim.
+   The bottom of the shimmer image is the lightest part (lilac, light pink),
+   so this one runs stronger: 0.52 ink puts the worst pixel at 4.7:1 and the
+   1st percentile above 6:1. */
 .site-footer {
   position: relative;
   z-index: 1;
-  padding-top: clamp(48px, 6vh, 64px);
-  border-top: 3px solid rgba(255, 255, 255, 0.3);
-}
-
-.site-footer__nav {
-  display: flex;
-  justify-content: center;
-  padding: 0 clamp(24px, 5vw, 64px);
-}
-
-.site-footer__grid {
-  display: inline-flex;
-  gap: clamp(48px, 8vw, 96px);
-}
-
-.site-footer__col {
-  text-align: center;
-}
-
-.site-footer__heading {
-  margin: 0 0 16px;
   font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: #fff;
-  text-shadow: 0 1px 4px rgba(37, 26, 53, 0.6);
 }
 
-.site-footer__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.site-footer::before {
+  content: '';
+  position: absolute;
+  inset: -48px 0 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(36, 20, 23, 0.52) 0,
+    rgba(36, 20, 23, 0.52) calc(100% - 48px),
+    rgba(36, 20, 23, 0) 100%
+  );
 }
 
-.site-footer__list a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 32px;
-  font-family: var(--font-body);
-  font-size: 19px;
-  color: #fff;
-  text-shadow: 0 1px 4px rgba(37, 26, 53, 0.6);
-  text-decoration: none;
-  border-radius: 4px;
-  transition: color 0.2s;
-}
-
-.site-footer__list a:hover {
-  color: var(--muted-yellow);
-  text-decoration: underline;
-}
-
-.site-footer__list a:focus-visible {
-  outline: 3px solid var(--honey-quartz);
-  outline-offset: 3px;
-}
-
-.site-footer__list a[aria-current='page'] {
-  color: var(--honey-quartz);
-  font-weight: 700;
-}
-
-.site-footer__bottom {
+.site-footer__row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 16px;
-  margin-top: clamp(32px, 6vh, 64px);
-  padding: 24px clamp(24px, 5vw, 64px) clamp(24px, 5vh, 48px);
-  border-top: 3px solid rgba(255, 255, 255, 0.3);
+  gap: 8px 24px;
+  max-width: 1088px;
+  margin-inline: auto;
+  padding: 32px 24px 40px;
 }
 
-.site-footer__copyright {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 17px;
-  letter-spacing: 0.04em;
+.site-footer__contact {
   color: #fff;
-  text-shadow: 0 1px 4px rgba(37, 26, 53, 0.6);
+  font-size: 18px;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.65);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  border-radius: 4px;
 }
 
-.site-footer__social {
-  list-style: none;
-  display: flex;
-  gap: 8px;
+.site-footer__credit {
   margin: 0;
-  padding: 0;
-}
-
-.site-footer__social a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
   color: #fff;
-  transition: color 0.2s, background 0.2s;
+  font-size: var(--fs-body-sm);
 }
 
-.site-footer__social a svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-.site-footer__social a:hover {
-  color: var(--muted-yellow);
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.site-footer__social a:focus-visible {
-  outline: 3px solid var(--honey-quartz);
+.site-footer :focus-visible {
+  outline: 3px solid #fff;
   outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--ink);
 }
 
-@media (max-width: 768px) {
-  .site-footer__grid {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    width: 100%;
-  }
-
-  .site-footer__list a {
-    min-height: 44px;
-  }
-
-  .site-footer__bottom {
+@media (max-width: 899px) {
+  .site-footer__row {
     flex-direction: column;
     align-items: flex-start;
+    padding: 24px 16px 32px;
   }
 }
 

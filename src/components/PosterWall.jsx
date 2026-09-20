@@ -13,9 +13,12 @@ import sadeCover from '../assets/posters/sade-love-deluxe.png'
 // would fight the cutout instead of reading as a record.
 const SIZE = 130
 
+// The top pair starts at 14% (was 6%) so it clears the white header text that
+// now sits directly on the background.
+
 const posters = [
-  { src: itoCover, alt: 'Imperial Tiger Orchestra — Mercato', top: '6%', left: '3%', rotate: -8, z: 1, framed: true },
-  { src: stevieCover, alt: 'Stevie Wonder — Songs In The Key Of Life', top: '6%', left: '86%', rotate: 6, z: 1, framed: true },
+  { src: itoCover, alt: 'Imperial Tiger Orchestra — Mercato', top: '14%', left: '3%', rotate: -8, z: 1, framed: true },
+  { src: stevieCover, alt: 'Stevie Wonder — Songs In The Key Of Life', top: '14%', left: '86%', rotate: 6, z: 1, framed: true },
 
   // Both unframed cutouts sit on a canvas with a lot of transparent padding
   // around the actual sleeve + disc artwork (Smiths' artwork is ~58% of its

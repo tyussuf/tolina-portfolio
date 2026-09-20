@@ -161,8 +161,10 @@ export default function AboutIntro({ onSelectTab }) {
             </p>
             <p>
               currently looking for{' '}
-              <strong className="font-bold">spring 2027 internships + new grad opportunities</strong>{' '}
-              in ux/ui &amp; product design.
+              <strong className="font-bold">
+                spring 2027 ux/ui internships and new grad product design roles
+              </strong>
+              .
             </p>
           </div>
         </div>

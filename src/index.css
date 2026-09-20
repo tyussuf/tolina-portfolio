@@ -1,5 +1,46 @@
 @import "tailwindcss";
 
+/* Design tokens. Plain CSS custom properties first (so App.css and any
+   component can read them with var()), mirrored into the Tailwind theme
+   below (so bg-ink, text-orange, rounded-case etc. resolve to the same
+   values). Change a value here and both stay in sync.
+
+   Brand colors are tuned for WCAG AA: pink, orange and purple carry white
+   text; gold carries --ink text only, never white.
+
+   Type: the display and body families are the site's original ones,
+   --font-display (Adobe Caslon Pro, falling back to Crimson Text) and
+   --font-body (Crimson Text), defined in App.css. The --fs-* scale below is
+   sized for Crimson, which sets smaller than the sans it replaced. */
+:root {
+  --ink: #241417;
+  --body: #4a3b33;
+  --muted: #6b5a52;
+  --cream: #f6efe3;
+  --card: #fffbf5;
+  --rule: #e2d4c1;
+  --crate: #ebdfcc;
+  --pink: #b02a63;
+  --orange: #a8481f;
+  --purple: #5b4ba8;
+  --gold: #f2b01f;
+
+  --fs-h1: 60px;
+  --fs-h2: 50px;
+  --fs-card-title: 30px;
+  --fs-body-lg: 24px;
+  --fs-body-md: 20px;
+  --fs-body-sm: 17px;
+  --fs-eyebrow: 13px;
+  --ls-eyebrow: 0.2em;
+
+  --r-page: 26px;
+  --r-case: 16px;
+  --r-photo: 3px;
+  --r-pill: 999px;
+}
+
+
 /* Strict 8pt spacing grid (see CLAUDE.md > Spacing). Resetting --spacing
    to nothing removes Tailwind's default algebraic scale (p-N normally
    resolves to N * 0.25rem for ANY N) — only the named steps redefined
@@ -27,4 +68,34 @@
   --radius-md: 12px;
   --radius-lg: 28px;
   --radius-full: 9999px;
+}
+
+/* Mirror of the tokens above, after the reset so --radius-*: initial
+   does not wipe the new named radii. */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-cream: var(--cream);
+  --color-card: var(--card);
+  --color-rule: var(--rule);
+  --color-crate: var(--crate);
+  --color-pink: var(--pink);
+  --color-orange: var(--orange);
+  --color-purple: var(--purple);
+  --color-gold: var(--gold);
+
+  --text-h1: var(--fs-h1);
+  --text-h2: var(--fs-h2);
+  --text-card-title: var(--fs-card-title);
+  --text-body-lg: var(--fs-body-lg);
+  --text-body-md: var(--fs-body-md);
+  --text-body-sm: var(--fs-body-sm);
+  --text-eyebrow: var(--fs-eyebrow);
+  --tracking-eyebrow: var(--ls-eyebrow);
+
+  --radius-page: var(--r-page);
+  --radius-case: var(--r-case);
+  --radius-photo: var(--r-photo);
+  --radius-pill: var(--r-pill);
 }
