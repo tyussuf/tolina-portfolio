@@ -1,3 +1,4 @@
+import DesignStack from './DesignStack.jsx'
 import PhilosophyGrid from './PhilosophyGrid.jsx'
 import designerPortrait from '../assets/about/designer-headshot.jpg'
 
@@ -48,6 +49,8 @@ export default function AboutDesigner() {
           />
         </div>
       </div>
+
+      <DesignStack />
 
       <PhilosophyGrid />
     </div>

@@ -41,12 +41,10 @@ export default function PhilosophyGrid() {
     <div className="mt-8">
       <span className="block h-px mb-12 bg-[var(--ink)]/25" />
 
-      <div className="flex items-center justify-center gap-4 mb-12">
-        <Star size={26} />
+      <div className="flex items-center justify-center mb-12">
         <h3 className="m-0 [font-family:var(--font-display)] font-bold italic text-[clamp(34px,4.8vw,52px)] text-[var(--ink)] text-center">
           My design philosophy
         </h3>
-        <Star size={26} />
       </div>
 
       <div className="grid grid-cols-1 min-[600px]:grid-cols-2 min-[900px]:grid-cols-4 gap-x-8 gap-y-16">

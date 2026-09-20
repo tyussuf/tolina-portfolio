@@ -3356,6 +3356,73 @@ body.has-note-cursor button {
   color: var(--paper);
 }
 
+/* ---------- About page: design stack (sticker pills with icons) ---------- */
+
+.stack {
+  margin-top: 32px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(37, 26, 53, 0.25);
+}
+
+.stack__group {
+  margin-top: 24px;
+}
+
+.stack__label {
+  margin: 0 0 12px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.stack__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Same sticker feel as the skills pills that used to sit on the home card: a
+   heavy ink outline, an offset shadow and a slight hand-stuck tilt. The fill is
+   the light card color so the brand icons keep their own colors. */
+.stack__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  rotate: var(--tilt, 0deg);
+  padding: 8px 14px 8px 10px;
+  border: 2px solid var(--ink);
+  background: var(--card);
+  box-shadow: 3px 3px 0 var(--ink);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.stack__icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stack__icon {
+  display: inline-flex;
+  color: var(--ink);
+}
+
+.stack__icon svg {
+  display: block;
+  height: 20px;
+  width: auto;
+}
+
 /* ---------- About page: folder stack ---------- */
 
 .folder-stack {
