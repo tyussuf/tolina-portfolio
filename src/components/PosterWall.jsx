@@ -2,8 +2,8 @@ import itoCover from '../assets/posters/imperial-tiger-orchestra.jpg'
 import janetCover from '../assets/posters/janet-jackson.jpg'
 import stevieCover from '../assets/posters/stevie-wonder.jpg'
 import fairuzCover from '../assets/posters/fairuz.jpg'
-import smithsCover from '../assets/posters/smiths-hatful-of-hollow.png'
-import sadeCover from '../assets/posters/sade-love-deluxe.png'
+import smithsCover from '../assets/posters/smiths-hatful-of-hollow.webp'
+import sadeCover from '../assets/posters/sade-love-deluxe.webp'
 
 // All posters share one size (1x original) for consistency, sitting as
 // three mirrored left/right pairs (top, middle, bottom) so the layout

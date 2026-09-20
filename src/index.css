@@ -9,8 +9,7 @@
    text; gold carries --ink text only, never white.
 
    Type: the display and body families are the site's original ones,
-   --font-display (Adobe Caslon Pro, falling back to Crimson Text) and
-   --font-body (Crimson Text), defined in App.css. The --fs-* scale below is
+   --font-display and --font-body, both Crimson Text, defined in App.css. The --fs-* scale below is
    sized for Crimson, which sets smaller than the sans it replaced. */
 :root {
   --ink: #241417;
@@ -31,7 +30,7 @@
   --fs-body-lg: 24px;
   --fs-body-md: 20px;
   --fs-body-sm: 17px;
-  --fs-eyebrow: 13px;
+  --fs-eyebrow: 17px;
   --ls-eyebrow: 0.2em;
 
   --r-page: 26px;

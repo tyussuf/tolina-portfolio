@@ -9,7 +9,7 @@ export default function Polaroid({ image, alt, caption, rotation = 0, className 
       className={`polaroid ${className}`}
       style={{ '--tilt': `${rotation}deg` }}
       aria-pressed={flipped}
-      aria-label={`Photo of ${alt}, press to read caption`}
+      aria-label={`${caption}. Photo of ${alt}. Press to flip the photo.`}
       onClick={() => setFlipped((f) => !f)}
     >
       {/* Always in the DOM so a screen reader can reach it without flipping. */}

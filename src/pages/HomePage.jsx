@@ -54,7 +54,7 @@ export default function HomePage() {
   })
 
   return (
-    <main className="home">
+    <div className="home">
       <IntroSpin onDone={() => setIntroDone(true)} />
 
       <div className="page-card">
@@ -102,6 +102,6 @@ export default function HomePage() {
           </ul>
         </section>
       </div>
-    </main>
+    </div>
   )
 }

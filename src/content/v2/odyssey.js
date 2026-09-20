@@ -9,7 +9,7 @@ export const odyssey = {
   // Already a full iPhone mockup graphic (real notch, status bar, home
   // indicator baked in) — no CSS phone frame needed, unlike Afaan Arcade's
   // bare screen art.
-  heroImage: "/images/odyssey/hero-splash-screen.png",
+  heroImage: "/images/odyssey/hero-splash-screen.webp",
   heroImageFramed: false,
   heroImageRatio: "447 / 559",
 
@@ -26,7 +26,7 @@ export const odyssey = {
       body: [
         "Odyssey is a mobile travel companion app designed to streamline itinerary management, airport navigation, and personalized recommendations into one seamless experience. As team lead, I guided our group through the Goal-Directed Design process, coordinating research, persona development, and in creating a mobile travel app companion.",
       ],
-      image: "/images/odyssey/home-mockup.png",
+      image: "/images/odyssey/home-mockup.webp",
       imageAlt: "Odyssey home screen: a \"Hi, Femi\" greeting, Stays, Flights and Cars shortcuts, and recommended destinations",
     },
 
@@ -104,7 +104,7 @@ export const odyssey = {
       body: [
         "By analyzing the strengths and weaknesses of our competitors, we identified app features that we could integrate into Odyssey's framework. We were able to identify similarities across travel apps that we could implement as conventions, delivering a travel app that feels familiar yet distinctly optimized for modern travelers.",
       ],
-      image: "/images/odyssey/competitive-audit.png",
+      image: "/images/odyssey/competitive-audit.webp",
     },
 
     {
@@ -134,7 +134,7 @@ export const odyssey = {
 
     {
       kind: "figure",
-      image: "/images/odyssey/affinity-map.png",
+      image: "/images/odyssey/affinity-map.webp",
       caption: "Affinity map clustering interview notes into travel app preferences, rewards system importance, existing app concerns, travel planning behaviors, user review importance, airport navigation assistance, and all-in-one vs. multiple apps",
     },
 
@@ -147,7 +147,7 @@ export const odyssey = {
         "After completing our interviews, we proceeded onto the Modeling phase.",
         "In order to create a user persona, we identified and analyzed Behavioral Variables from our Affinity Mapping Process. This process highlights any definitive patterns/key archetypes amongst our interviewees.",
       ],
-      image: "/images/odyssey/behavioral-continuums.png",
+      image: "/images/odyssey/behavioral-continuums.webp",
     },
 
     {
@@ -157,7 +157,7 @@ export const odyssey = {
         "Using our key behavior continuums, we developed a list of goals and behaviors from the core patterns we observed. After developing and fleshing this out, we created a Primary Persona, named Femi Adeyemi. Femi represents our core needs and goals of Odyssey.",
         "We started by mapping out key behavioral continuums to spot common patterns in how people think and act. From there, we pulled together a list of goals and behaviors that reflected what users really needed from our product, Odyssey.",
       ],
-      image: "/images/odyssey/persona-femi.png",
+      image: "/images/odyssey/persona-femi.webp",
     },
 
     { kind: "sectionTitle", text: "Requirements" },
@@ -173,8 +173,8 @@ export const odyssey = {
     {
       kind: "twoFigures",
       figures: [
-        { image: "/images/odyssey/context-scenario.png", caption: "Femi's Context Scenario" },
-        { image: "/images/odyssey/requirements-list.png", caption: "Design Requirements List" },
+        { image: "/images/odyssey/context-scenario.webp", caption: "Femi's Context Scenario" },
+        { image: "/images/odyssey/requirements-list.webp", caption: "Design Requirements List" },
       ],
     },
 
@@ -191,7 +191,7 @@ export const odyssey = {
 
     {
       kind: "figure",
-      image: "/images/odyssey/wireframes-flow.png",
+      image: "/images/odyssey/wireframes-flow.webp",
       caption: "Full wireframe flow from FigJam, covering onboarding through booking",
     },
 

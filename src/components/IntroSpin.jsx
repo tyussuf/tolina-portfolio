@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import vinyl from '../assets/stars-intro/vinyl.png'
-import rainbowSplash from '../assets/stars-intro/rainbow-splash-star.png'
-import redTwinStar from '../assets/stars-intro/red-twin-star.png'
-import yellowCrayonStar from '../assets/stars-intro/yellow-crayon-star.png'
-import redBlueCometStar from '../assets/stars-intro/red-blue-comet-star.png'
+import vinyl from '../assets/stars-intro/vinyl.webp'
+import rainbowSplash from '../assets/stars-intro/rainbow-splash-star.webp'
+import redTwinStar from '../assets/stars-intro/red-twin-star.webp'
+import yellowCrayonStar from '../assets/stars-intro/yellow-crayon-star.webp'
+import redBlueCometStar from '../assets/stars-intro/red-blue-comet-star.webp'
 
 const SESSION_KEY = 'introSpinPlayed'
 

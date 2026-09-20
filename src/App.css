@@ -1,22 +1,11 @@
-@font-face {
-  font-family: 'Adobe Caslon Pro';
-  src:
-    url('/fonts/AdobeCaslonPro-Regular.woff2') format('woff2'),
-    url('/fonts/AdobeCaslonPro-Regular.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Adobe Caslon Pro';
-  src:
-    url('/fonts/AdobeCaslonPro-Bold.woff2') format('woff2'),
-    url('/fonts/AdobeCaslonPro-Bold.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+/* Adobe Caslon Pro used to be declared here with @font-face rules pointing at
+   /fonts/*.woff2 files that were never added, so every page requested four
+   font files that the host answered with an HTML page, and the site always
+   rendered in Crimson Text. The rules and the family name are gone so a
+   machine that happens to have Caslon installed (like the author's) shows the
+   same font as every visitor. To use Caslon for real, add the woff2 files
+   under /public/fonts, restore the @font-face rules and put it back first in
+   --font-display. */
 
 :root {
   --paper: #f7f2e7;
@@ -37,7 +26,7 @@
   --overlay-ink: #f4ecff;
   --overlay-muted: #c9bde0;
 
-  --font-display: 'Adobe Caslon Pro', 'Crimson Text', Georgia, serif;
+  --font-display: 'Crimson Text', Georgia, serif;
   --font-body: 'Crimson Text', Georgia, serif;
 
   /* Document-level page background, crossfaded by case study pages
@@ -203,6 +192,30 @@ body.has-note-cursor button {
   font-size: 12px;
   pointer-events: none;
   text-shadow: 0 0 6px currentColor;
+}
+
+/* ---------- Skip link ---------- */
+
+.skip-link {
+  position: absolute;
+  top: -80px;
+  left: 16px;
+  z-index: 100;
+  padding: 12px 20px;
+  border-radius: var(--r-pill);
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus-visible {
+  top: 16px;
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #fff;
 }
 
 /* ---------- Header ---------- */
@@ -1057,6 +1070,11 @@ body.has-note-cursor button {
 @media (max-width: 899px) {
   .home {
     padding: 16px 16px 24px;
+  }
+
+  /* 17px with wide tracking is too long for one line on a phone */
+  .eyebrow {
+    font-size: 14px;
   }
 
   .page-card {

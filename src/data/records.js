@@ -1,6 +1,6 @@
-import blueprintCover from '../assets/covers/blueprint.jpg'
-import odysseyCover from '../assets/covers/odyssey.png'
-import afaanArcadeCover from '../assets/covers/afaan-arcade.png'
+import blueprintCover from '../assets/covers/blueprint.webp'
+import odysseyCover from '../assets/covers/odyssey.webp'
+import afaanArcadeCover from '../assets/covers/afaan-arcade.webp'
 import afaanWireframes from '../assets/case-studies/afaan-arcade/wireframes.jpg'
 import afaanScreenSplash from '../assets/case-studies/afaan-arcade/screen-splash.png'
 import afaanScreenSignup from '../assets/case-studies/afaan-arcade/screen-signup.png'
@@ -37,14 +37,14 @@ export const records = [
       {
         heading: 'Competitive Landscape',
         body: "We audited Pinterest and Udemy. Pinterest offers inspiration but no educational structure or tools for reflection; Udemy's courses lean technical, costly, and inconsistent in quality. Blueprint sits in the gap between the two: guided, accessible, and hands-on.",
-        images: [{ src: '/images/blueprint/competitive-audit.png', alt: 'Competitive audit of Pinterest and Udemy' }],
+        images: [{ src: '/images/blueprint/competitive-audit.webp', alt: 'Competitive audit of Pinterest and Udemy' }],
       },
       {
         heading: 'Design Process',
         body: 'As team lead, I established the grid system, layout patterns, and early design-system foundations, then co-designed the moodboard creation flow itself. On the UI side, I integrated aesthetic filters into the moodboard flow, refined dropdown interactions for clarity, and kept spacing and alignment consistent with the grid system throughout.',
         images: [
-          { src: '/images/blueprint/wireframes-whiteboard.png', alt: 'Whiteboard sketch of the Blueprint user flow' },
-          { src: '/images/blueprint/moodboard-screens.png', alt: 'Mood board filtering screens' },
+          { src: '/images/blueprint/wireframes-whiteboard.webp', alt: 'Whiteboard sketch of the Blueprint user flow' },
+          { src: '/images/blueprint/moodboard-screens.webp', alt: 'Mood board filtering screens' },
         ],
       },
       {
@@ -83,12 +83,12 @@ export const records = [
       {
         heading: 'Research',
         body: "I ran a 17-respondent survey and five 30–45 minute interviews, including one with a nonprofit focused on Oromo youth advancement. Every respondent wanted an auditory element built in; 58.8% wanted games and interactive exercises over structured lessons, and 58.8% said they'd commit 5–10 minutes a day. Interviewees tied language directly to cultural identity and pride, and named a lack of structured tools, intimidation around learning alone, and mainstream apps' lack of Afaan Oromo support as their biggest pain points. Gamification, audio pronunciation, progress tracking, and culturally relevant examples came up again and again as desired features.",
-        images: [{ src: '/images/afaan-arcade/affinity-map.png', alt: 'FigJam affinity board clustering interview notes into shared pain points' }],
+        images: [{ src: '/images/afaan-arcade/affinity-map.webp', alt: 'FigJam affinity board clustering interview notes into shared pain points' }],
       },
       {
         heading: 'Competitive Landscape',
         body: "I audited Duolingo, Quizlet Learn, and Babbel against gamification, accessibility, community interaction, and, critically, Afaan Oromo support. Duolingo and Babbel don't offer Afaan Oromo at all, and Quizlet only supports it through user-created sets. That gap, more than any single feature, is what Afaan Arcade exists to close.",
-        images: [{ src: '/images/afaan-arcade/competitive-matrix.png', alt: 'Competitive audit of Duolingo, Quizlet Learn, and Babbel' }],
+        images: [{ src: '/images/afaan-arcade/competitive-matrix.webp', alt: 'Competitive audit of Duolingo, Quizlet Learn, and Babbel' }],
       },
       {
         heading: 'Design Process',
@@ -146,19 +146,19 @@ export const records = [
       {
         heading: 'Research',
         body: 'A literature review surfaced app fatigue, information overload, and mistrust in travel platforms as recurring pain points, then we ran five user interviews across a range of travel styles. Customization, an all-in-one experience, budget-conscious options, and honest reviews came up again and again; we organized these findings through affinity mapping into shared behaviors and goals.',
-        images: [{ src: '/images/odyssey/affinity-map.png', alt: 'Affinity map clustering interview notes into shared themes' }],
+        images: [{ src: '/images/odyssey/affinity-map.webp', alt: 'Affinity map clustering interview notes into shared themes' }],
       },
       {
         heading: 'Competitive Landscape',
         body: "We analyzed Kayak, Expedia, and Trip Advisor to identify strengths, weaknesses, and conventions worth carrying into Odyssey's own framework, aiming for something that felt familiar yet distinctly optimized for modern travelers.",
-        images: [{ src: '/images/odyssey/competitive-audit.png', alt: 'Competitive audit of Kayak, Expedia, and Trip Advisor' }],
+        images: [{ src: '/images/odyssey/competitive-audit.webp', alt: 'Competitive audit of Kayak, Expedia, and Trip Advisor' }],
       },
       {
         heading: 'Design Process',
         body: 'Following Goal-Directed Design, we built a primary persona, Femi Adeyemi, then wireframed a key path scenario (onboarding, exploration, booking) alongside validation scenarios for alternate flows, all in FigJam. Usability testing surfaced navigation confusion and unclear review tags, which we addressed by reworking the interactive flow and redesigning the tags for clarity.',
         images: [
-          { src: '/images/odyssey/persona-femi.png', alt: 'Femi Adeyemi, primary persona' },
-          { src: '/images/odyssey/wireframes-flow.png', alt: 'Full wireframe flow from FigJam' },
+          { src: '/images/odyssey/persona-femi.webp', alt: 'Femi Adeyemi, primary persona' },
+          { src: '/images/odyssey/wireframes-flow.webp', alt: 'Full wireframe flow from FigJam' },
         ],
       },
       {

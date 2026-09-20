@@ -33,9 +33,9 @@ export const afaanArcade = {
     {
       kind: "figure",
       images: [
-        "/images/afaan-arcade/design-signup.png",
-        "/images/afaan-arcade/design-username.png",
-        "/images/afaan-arcade/design-unit-list.png",
+        "/images/afaan-arcade/design-signup.webp",
+        "/images/afaan-arcade/design-username.webp",
+        "/images/afaan-arcade/design-unit-list.webp",
       ],
       caption: "Akkam sign-up, Create your User Name, and the Unit One (Irreecha) lesson list",
     },
@@ -85,17 +85,17 @@ export const afaanArcade = {
         {
           label: "Insight 1",
           value: "100% of users wanted an auditory element in Afaan Arcade",
-          image: "/images/afaan-arcade/survey-insight-1.png",
+          image: "/images/afaan-arcade/survey-insight-1.webp",
         },
         {
           label: "Insight 2",
           value: "58.8% of participants wanted games and interactive exercises",
-          image: "/images/afaan-arcade/survey-insight-2.png",
+          image: "/images/afaan-arcade/survey-insight-2.webp",
         },
         {
           label: "Insight 3",
           value: "58.8% of participants would dedicate 5-10 minutes daily to learn Afaan Oromo",
-          image: "/images/afaan-arcade/survey-insight-3.png",
+          image: "/images/afaan-arcade/survey-insight-3.webp",
         },
       ],
     },
@@ -125,7 +125,7 @@ export const afaanArcade = {
 
     {
       kind: "figure",
-      image: "/images/afaan-arcade/affinity-map.png",
+      image: "/images/afaan-arcade/affinity-map.webp",
       caption: "Pain Points gathered during User Interviews",
     },
 
@@ -145,7 +145,7 @@ export const afaanArcade = {
       bodyAfter: [
         "While Duolingo, Quizlet, and Babbel offer strong features like gamification, accessibility, and community interaction, only Quizlet provides limited access to Afaan Oromo through user-created sets. Duolingo and Babbel do not currently support Afaan Oromo at all, which highlights a significant gap in culturally relevant and accessible learning tools for the language.",
       ],
-      image: "/images/afaan-arcade/competitive-matrix.png",
+      image: "/images/afaan-arcade/competitive-matrix.webp",
       caption: "Evaluation of platform features and the availability of Afaan Oromo",
     },
 
@@ -165,13 +165,13 @@ export const afaanArcade = {
         "Gamification elements (leaderboards, progress tracking, achievements) to encourage continued engagement.",
         "Accessibility and customization options within settings and profile pages.",
       ],
-      image: "/images/afaan-arcade/wireframes-sketch.png",
+      image: "/images/afaan-arcade/wireframes-sketch.webp",
     },
 
     {
       kind: "figure",
       heading: "High-Fidelity Screens",
-      images: [screenProfile, "/images/afaan-arcade/design-exercise.png", screenFirstLesson],
+      images: [screenProfile, "/images/afaan-arcade/design-exercise.webp", screenFirstLesson],
       caption: "Progress dashboard, a lesson exercise, and the first-lesson welcome screen",
     },
 

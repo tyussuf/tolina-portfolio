@@ -9,7 +9,7 @@ export const blueprint = {
   // Already a full iPhone mockup graphic (real notch, status bar, home
   // indicator baked in) — no CSS phone frame needed, unlike Afaan Arcade's
   // bare screen art.
-  heroImage: "/images/blueprint/hero-onboarding.png",
+  heroImage: "/images/blueprint/hero-onboarding.webp",
   heroImageFramed: false,
   heroImageRatio: "447 / 559",
 
@@ -28,7 +28,7 @@ export const blueprint = {
         "The concept grew from a simple question: Where can people, whether fashion-curious or industry professionals, learn the basics, experiment, and express their style in one place?",
         "Our goal was to create a space that feels approachable, playful, and empowering for users at any stage of their fashion journey.",
       ],
-      image: "/images/blueprint/intro-learn-fashion.png",
+      image: "/images/blueprint/intro-learn-fashion.webp",
     },
 
     {
@@ -66,7 +66,7 @@ export const blueprint = {
       kind: "competitiveFigure",
       // TODO: this section had no heading of its own in the original.
       // The content below is the annotation text from the competitive audit image.
-      image: "/images/blueprint/competitive-audit.png",
+      image: "/images/blueprint/competitive-audit.webp",
       competitors: [
         {
           name: "Pinterest",
@@ -126,18 +126,18 @@ export const blueprint = {
         "Adjusted padding, alignment, and spacing across components to maintain consistency with the grid system in the Figma file.",
         "Helped shape a UI that feels clean, expressive, and easy to navigate, especially for users new to fashion terminology.",
       ],
-      image: "/images/blueprint/aesthetics-mood-boards.png",
+      image: "/images/blueprint/aesthetics-mood-boards.webp",
     },
 
     {
       kind: "figure",
-      image: "/images/blueprint/wireframes-whiteboard.png",
+      image: "/images/blueprint/wireframes-whiteboard.webp",
       caption: "Our Mid-Fidelity Wireframes",
     },
 
     {
       kind: "figure",
-      image: "/images/blueprint/moodboard-screens.png",
+      image: "/images/blueprint/moodboard-screens.webp",
       caption: "Mood board filtering by category — Formal Wears, Beach Wear, and Vintage",
     },
 

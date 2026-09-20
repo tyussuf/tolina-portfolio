@@ -37,8 +37,8 @@ Brand colors, type scale and named radii live in `src/index.css` as plain CSS cu
 (`bg-ink`, `text-orange`, `rounded-case`). Change a value in `:root` and both stay in sync.
 
 Type is the site's original pair, not the Playfair/Archivo pair from the first pass of the design spec
-(reverted at the user's request): `--font-display` (Adobe Caslon Pro, falling back to Crimson Text) and
-`--font-body` (Crimson Text), both defined in `App.css`. The `--fs-*` scale is sized for Crimson, which
+(reverted at the user's request): `--font-display` and `--font-body`, both Crimson Text and both defined in `App.css` (Adobe Caslon Pro was
+planned but never added; see the note at the top of `App.css`). The `--fs-*` scale is sized for Crimson, which
 sets smaller than a sans at the same px, so body sizes run 17-24px.
 
 The named radii (26 page card, 16 case card, 3 photo frame, 999 pill) and the 56/64/54px values in the

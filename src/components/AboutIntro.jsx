@@ -1,19 +1,19 @@
 import { useRef } from 'react'
 import mainPortrait from '../assets/about/main-portrait.jpg'
 import nightPortrait from '../assets/about/night-portrait.jpg'
-import stickers from '../assets/about/icons/sticker-cluster.png'
-import atlPatch from '../assets/about/icons/atl-patch.png'
-import vinylRecord from '../assets/about/icons/vinyl-record.png'
+import stickers from '../assets/about/icons/sticker-cluster.webp'
+import atlPatch from '../assets/about/icons/atl-patch.webp'
+import vinylRecord from '../assets/about/icons/vinyl-record.webp'
 import star from '../assets/about/icons/star.png'
 import AboutCollage from './AboutCollage.jsx'
 import Polaroid from './Polaroid.jsx'
 
-import arenaPhoto from '../assets/about/collage/arena.jpg'
-import colorstackPhoto from '../assets/about/collage/colorstack.jpg'
-import capitolPhoto from '../assets/about/collage/capitol.jpg'
-import friendsPhoto from '../assets/about/collage/friends.jpg'
-import culturalPhoto from '../assets/about/collage/cultural.jpg'
-import hennaPhoto from '../assets/about/collage/henna.jpg'
+import arenaPhoto from '../assets/about/collage/arena.webp'
+import colorstackPhoto from '../assets/about/collage/colorstack.webp'
+import capitolPhoto from '../assets/about/collage/capitol.webp'
+import friendsPhoto from '../assets/about/collage/friends.webp'
+import culturalPhoto from '../assets/about/collage/cultural.webp'
+import hennaPhoto from '../assets/about/collage/henna.webp'
 
 // Percent offsets pulled from the Figma Intro frame (node 23:3), converted
 // from the frame's absolute pixel positions into percentages of the

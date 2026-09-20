@@ -87,7 +87,7 @@ export default {
       label: 'Affinity Mapping',
       body: 'After we completed our interviews, we completed Affinity Maps to organize and analyze our findings. We each took 15 minutes to write down our reflections and key points mentioned by the interviewee. We then discussed our findings collectively and grouped together similar points to indicate a pattern. These patterns we determined through Affinity Mapping point to shared behaviors and goals within interviewees, thus influencing our design choices.\n\nWe found that interviewees highlighted the importance of an easy-to-navigate platform, honest reviews, and organization to a positive travel experience.',
       image: {
-        src: '/images/odyssey/affinity-map.png',
+        src: '/images/odyssey/affinity-map.webp',
         alt: '',
         caption: 'Interview notes clustered into themes — interviewees highlighted the importance of an easy-to-navigate platform, honest reviews, and organization to a positive travel experience',
       },
@@ -98,7 +98,7 @@ export default {
       label: 'Behavioral Continuums',
       body: 'After completing our interviews, we proceeded onto the Modeling phase. In order to create a user persona, we identified and analyzed Behavioral Variables from our Affinity Mapping Process. This process highlights any definitive patterns/key archetypes amongst our interviewees.',
       image: {
-        src: '/images/odyssey/behavioral-continuums.png',
+        src: '/images/odyssey/behavioral-continuums.webp',
         alt: '',
         caption: 'Behavioral continuums identifying definitive patterns and key traveler archetypes from the affinity mapping process',
       },
@@ -109,7 +109,7 @@ export default {
       label: 'User Persona',
       body: 'Using our key behavior continuums, we developed a list of goals and behaviors from the core patterns we observed. After developing and fleshing this out, we created a Primary Persona, named Femi Adeyemi. Femi represents our core needs and goals of Odyssey.\n\nWe started by mapping out key behavioral patterns in how people think and act. From there, we pulled together a list of goals and behaviors that reflected what users really needed from our product, Odyssey.',
       image: {
-        src: '/images/odyssey/persona-femi.png',
+        src: '/images/odyssey/persona-femi.webp',
         alt: '',
         caption: 'Femi Adeyemi, primary persona — a busy, travel-curious college student, built from the behavioral continuums to represent Odyssey’s core user',
       },
@@ -120,7 +120,7 @@ export default {
       label: 'Context Scenarios',
       body: "Context Scenarios: Bringing Femi's Journey to Life. After developing our primary persona, Femi Adeyemi, we created a context scenario to explore how Odyssey would fit into her daily life as a busy, travel-curious college student. This step was a crucial part of the Goal-Directed Design process, allowing us to imagine how travelers would interact with the app in real-world settings and how it could help them meet their travel goals.",
       image: {
-        src: '/images/odyssey/context-scenario.png',
+        src: '/images/odyssey/context-scenario.webp',
         alt: '',
         caption: "Context scenario exploring how Odyssey fits into Femi's daily life as a busy, travel-curious college student",
       },
@@ -130,7 +130,7 @@ export default {
       type: 'gallery',
       label: 'Requirements List',
       image: {
-        src: '/images/odyssey/requirements-list.png',
+        src: '/images/odyssey/requirements-list.webp',
         alt: '',
         caption: 'Requirements list mapping user actions, objects, and context for the key path scenario',
       },

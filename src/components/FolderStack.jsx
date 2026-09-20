@@ -51,6 +51,25 @@ const TAB_HEIGHT = 48
 const LAYER_OFFSET = TAB_HEIGHT + 8 // must clear the tab plus a visible sliver of body edge (8pt grid: was +6)
 const BACK_TAB_SPACE = LAYER_OFFSET * 3 // room for the 3 back tabs' offset above the front folder
 
+// Arrow keys / Home / End move between tabs (roving tabindex only works if the
+// other tabs can actually be reached from the keyboard).
+function makeTabKeyHandler(setActiveId) {
+  return (event, index) => {
+    const last = TABS.length - 1
+    let next = null
+    if (event.key === 'ArrowRight') next = index === last ? 0 : index + 1
+    else if (event.key === 'ArrowLeft') next = index === 0 ? last : index - 1
+    else if (event.key === 'Home') next = 0
+    else if (event.key === 'End') next = last
+    if (next === null) return
+    event.preventDefault()
+    const id = TABS[next].id
+    setActiveId(id)
+    // Every tab button is already in the page (only the panel content swaps), so focus can move right away.
+    document.getElementById(`folder-tab-${id}`)?.focus()
+  }
+}
+
 export default function FolderStack() {
   const [activeId, setActiveId] = useState('intro')
   const [bodyHeight, setBodyHeight] = useState(0)
@@ -58,6 +77,7 @@ export default function FolderStack() {
   const stackRef = useRef(null)
   const mountedRef = useRef(false)
   const isMobile = useIsMobile()
+  const onTabKeyDown = makeTabKeyHandler(setActiveId)
   const reduceMotion =
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -99,7 +119,7 @@ export default function FolderStack() {
     return (
       <div ref={stackRef} className="folder-stack folder-stack--mobile">
         <div className="folder-tabs-mobile" role="tablist" aria-label="About sections">
-          {TABS.map((tab) => {
+          {TABS.map((tab, index) => {
             const isActive = tab.id === activeId
             return (
               <button
@@ -109,6 +129,8 @@ export default function FolderStack() {
                 id={`folder-tab-${tab.id}`}
                 aria-selected={isActive}
                 aria-controls={`folder-panel-${tab.id}`}
+                tabIndex={isActive ? 0 : -1}
+                onKeyDown={(event) => onTabKeyDown(event, index)}
                 className="folder-tab-mobile"
                 style={{ background: tab.bg, color: tab.fg }}
                 onClick={() => setActiveId(tab.id)}
@@ -139,10 +161,20 @@ export default function FolderStack() {
     <div
       ref={stackRef}
       className="folder-stack"
-      role="tablist"
+      role="group"
       aria-label="About sections"
       style={{ height: BACK_TAB_SPACE + bodyHeight }}
     >
+      {/* The tab buttons live inside each folder, right beside their panel, so the
+          tablist can't be their DOM parent (a tablist may only contain tabs).
+          aria-owns gives screen readers the same list without moving anything. */}
+      <div
+        role="tablist"
+        aria-label="About sections"
+        aria-owns={TABS.map((tab) => `folder-tab-${tab.id}`).join(' ')}
+        style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}
+      />
+
       {TABS.map((tab, slotIndex) => {
         const position = positionOf(tab.id)
         const isActive = tab.id === activeId
@@ -161,6 +193,7 @@ export default function FolderStack() {
               aria-selected={isActive}
               aria-controls={`folder-panel-${tab.id}`}
               tabIndex={isActive ? 0 : -1}
+              onKeyDown={(event) => onTabKeyDown(event, slotIndex)}
               className="folder__tab"
               style={{
                 left: `calc(${slotIndex * 25}% + 12.5% - var(--tab-w) / 2)`,

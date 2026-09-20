@@ -120,14 +120,14 @@ export default {
         },
       ],
       affinityImage: {
-        src: '/images/afaan-arcade/affinity-map.png',
+        src: '/images/afaan-arcade/affinity-map.webp',
         alt: '',
         caption: 'Interview notes clustered into themes',
       },
       competitive: {
         body: "I audited Duolingo, Quizlet Learn, and Babbel against gamification, language offerings, accessibility, cultural relevance, and community interaction. Duolingo and Babbel don't offer Afaan Oromo at all, and Quizlet only supports it through user-created sets — a gap that's more central to what Afaan Arcade exists to close than any single feature.",
         image: {
-          src: '/images/afaan-arcade/competitive-matrix.png',
+          src: '/images/afaan-arcade/competitive-matrix.webp',
           alt: '',
           caption: 'Platform features and Afaan Oromo availability across Duolingo, Quizlet Learn, and Babbel',
         },
@@ -184,22 +184,22 @@ export default {
       label: 'The Design',
       images: [
         {
-          src: '/images/afaan-arcade/design-signup.png',
+          src: '/images/afaan-arcade/design-signup.webp',
           alt: 'Sign-up screen reading "Akkam! Sign up and start learning Afaan Oromo!"',
           caption: 'Onboarding, kept short to lower the barrier for returning learners',
         },
         {
-          src: '/images/afaan-arcade/design-username.png',
+          src: '/images/afaan-arcade/design-username.webp',
           alt: '',
           caption: 'Account creation with guidance on the spot',
         },
         {
-          src: '/images/afaan-arcade/design-unit-list.png',
+          src: '/images/afaan-arcade/design-unit-list.webp',
           alt: 'Unit One: Irreecha lesson path with progress bar',
           caption: 'Irreecha unit broken into ten short items with visible progress',
         },
         {
-          src: '/images/afaan-arcade/design-exercise.png',
+          src: '/images/afaan-arcade/design-exercise.webp',
           alt: 'A "Finish the sentence" fill-in-the-blank exercise screen',
           caption: 'A gamified fill-in-the-blank exercise, paired with audio and video',
         },
@@ -212,7 +212,7 @@ export default {
       label: 'Low/Mid-Fidelity Wireframes',
       body: 'The sketches outline the core navigation structure and key screens — onboarding, dashboard, search, learning modules, leaderboard, and profile — before moving into Figma. The design emphasizes immediate clarity on the opening and sign-in screens, a consistent pixel-art visual theme that reinforces the arcade concept, personalization through learning-style preferences and daily study goals, gamification through leaderboards, progress tracking, and achievements, and accessibility and customization options throughout settings and profile pages.',
       image: {
-        src: '/images/afaan-arcade/wireframes-sketch.png',
+        src: '/images/afaan-arcade/wireframes-sketch.webp',
         alt: 'Hand-drawn low-fidelity wireframes for Afaan Arcade navigation and key screens',
         caption:
           'Hand sketches covering onboarding, dashboard, search, learning modules, leaderboard, and profile',

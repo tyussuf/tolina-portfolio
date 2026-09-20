@@ -1,4 +1,4 @@
-import vinylRecord from '../assets/about/icons/vinyl-record.png'
+import vinylRecord from '../assets/about/icons/vinyl-record.webp'
 import soundwave from '../assets/about/currently-playing/soundwave.png'
 import barcode from '../assets/about/currently-playing/barcode.png'
 
