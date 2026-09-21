@@ -724,6 +724,7 @@ body.has-note-cursor button {
   font-family: var(--font-body);
   font-style: normal;
   font-size: var(--fs-body-md);
+  margin-left: 0.25em;
 }
 
 .hero__photo {
