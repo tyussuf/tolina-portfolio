@@ -727,47 +727,7 @@ body.has-note-cursor button {
 }
 
 .hero__photo {
-  --record-peek: 60px;
   flex: 0 0 324px;
-}
-
-.hero__stage {
-  position: relative;
-}
-
-/* Your own record (the Vinyl component) tucked behind the polaroid so a
-   crescent of it sticks out past the right edge, slowly turning. */
-.hero__record {
-  position: absolute;
-  z-index: 0;
-  top: 14%;
-  right: calc(-1 * var(--record-peek));
-  width: 90%;
-  pointer-events: none;
-  isolation: isolate;
-}
-
-/* A plain circular shadow behind the record. Not filter: drop-shadow: on top
-   of the Vinyl's blend modes it made the polaroid photo above it paint white. */
-.hero__record::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: 50%;
-  box-shadow: 0 14px 22px rgba(36, 20, 23, 0.35);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero__record .vinyl__spin {
-    animation: hero-record-spin 18s linear infinite;
-  }
-}
-
-@keyframes hero-record-spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .hero-polaroid {
@@ -1092,7 +1052,6 @@ body.has-note-cursor button {
   }
 
   .hero__photo {
-    --record-peek: 20px;
     flex: none;
     align-self: center;
     width: min(324px, 100%);
