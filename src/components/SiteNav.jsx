@@ -75,7 +75,7 @@ export default function SiteNav() {
           <ul className="site-header__external">
             <li>
               <a href={LINKS.resume} target="_blank" rel="noopener noreferrer" onClick={close}>
-                Résumé <ArrowUpRight />
+                Resume <ArrowUpRight />
               </a>
             </li>
             <li>
