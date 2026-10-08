@@ -5,9 +5,6 @@ import redTwinStar from '../assets/stars-intro/red-twin-star.webp'
 import yellowCrayonStar from '../assets/stars-intro/yellow-crayon-star.webp'
 import redBlueCometStar from '../assets/stars-intro/red-blue-comet-star.webp'
 
-// Module-level, so it resets on every page load (refresh replays the intro)
-// but clicking back to Home within the site doesn't.
-let playedThisLoad = false
 // Keep in sync with .intro-spin__stage's animation and .intro-spin's transition.
 const SPIN_MS = 1100
 const DISSOLVE_MS = 450
@@ -15,15 +12,9 @@ const DISSOLVE_MS = 450
 export default function IntroSpin({ onDone }) {
   const [phase, setPhase] = useState(() => {
     const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-    return reduceMotion || playedThisLoad ? 'done' : 'spinning'
+    return reduceMotion ? 'done' : 'spinning'
   })
   const stageRef = useRef(null)
-
-  useEffect(() => {
-    if (phase === 'spinning') {
-      playedThisLoad = true
-    }
-  }, [phase])
 
   // Timers back up the animationend/transitionend events below. Browsers skip
   // those events when the tab isn't being painted (switching tabs mid-intro),
